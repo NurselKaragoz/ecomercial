@@ -8,7 +8,7 @@ import { BsTwitter } from "react-icons/bs";
 function Header() {
   return (
     <div>
-      <div class="  flex bg-colors-lacivert  text-colors-white place-content-around p-4">
+      <div class="  flex bg-colors-lacivert  text-colors-white place-content-around p-3">
         <div class=" flex ">
           <div class="flex  items-center">
             <BsTelephone />
