@@ -2,15 +2,17 @@ import { IoPersonOutline } from "react-icons/io5";
 import { BiSearch } from "react-icons/bi";
 import { LiaShoppingCartSolid } from "react-icons/lia";
 import { AiOutlineHeart } from "react-icons/ai";
+import { RiArrowDropDownLine } from "react-icons/ri";
 function Navigator() {
   return (
     <div class="flex items-center p-4  justify-between ">
       <div>
         <h3 class=" text-colors-lacivert font-semibold  text-xl">Bandage</h3>
       </div>
-      <div class="text-colors-gray list-none flex flex-row space-x-3">
+      <div class="text-colors-gray list-none flex flex-row space-x-3 items-center">
         <li>Home</li>
         <li>Shop</li>
+        <RiArrowDropDownLine />
         <li>About</li>
         <li>Blog</li>
         <li>Contact</li>
