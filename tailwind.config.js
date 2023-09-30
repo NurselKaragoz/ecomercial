@@ -8,6 +8,7 @@ module.exports = {
         lacivert: "#252B42",
         white: "#ffffff",
         gray: "#737373",
+        blue: "#23A6F0",
       },
     },
   },

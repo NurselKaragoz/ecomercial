@@ -33,9 +33,6 @@ function Header() {
           <BsTwitter />
         </div>
       </div>
-      <div>
-        <h2>Bandage</h2>
-      </div>
     </div>
   );
 }
