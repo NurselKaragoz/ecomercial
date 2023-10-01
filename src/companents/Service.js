@@ -11,13 +11,13 @@ function Service() {
           Problems trying to resolve the conflict between
         </p>
       </div>
-      <div class=" text-colors-blue flex gap-5 justify-center">
-        <div class="text-center max-w-xs">
+      <div class=" text-colors-blue flex gap-5 justify-center pt-24">
+        <div class=" max-w-xs flex flex-col ">
           <BiSolidBookReader size={70} />
           <h3 class="text-colors-lacivert">Easy Wins</h3>
           <p class="text-colors-gray">Get your best looking smile now!</p>
         </div>
-        <div class="text-center max-w-xs">
+        <div class="text-center max-w-xs ">
           <CgReadme size={70} />
           <h3 class="text-colors-lacivert">Concrete</h3>
           <p class="text-colors-gray">
@@ -25,7 +25,7 @@ function Service() {
             beautiful smile
           </p>
         </div>
-        <div class=" max-w-xs">
+        <div class=" max-w-xs ">
           <FaArrowTrendUp size={70} />
 
           <h3 class="text-colors-lacivert">Hack Growth</h3>
