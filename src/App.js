@@ -8,6 +8,7 @@ import Navigator from "./companents/Navigator";
 import Footer from "./companents/Footer";
 import About from "./companents/About";
 import Service from "./companents/Service";
+import Blog from "./companents/Blog";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Item />
       <About />
       <Service />
+      <Blog />
       <Footer />
     </div>
   );
