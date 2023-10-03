@@ -1,11 +1,12 @@
-import product from "./product-cover-5.png";
+import { data } from "./Data";
 function Item() {
   return (
     <div>
       <div>
-        <h3 class=" text-colors-gray">Featured Products</h3>
+        <h3 className=" text-colors-gray">Featured Products</h3>
         <h2>BESTSELLER PRODUCT</h2>
         <p>Problems trying to resolve the conflict between </p>
+        <div>{data.img}</div>
       </div>
     </div>
   );
