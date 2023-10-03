@@ -4,36 +4,42 @@ import { AiOutlineCheck } from "react-icons/ai";
 function ProductDescription() {
   return (
     <div>
-      <div className=" text-colors-gray flex  justify-evenly ">
+      <div className=" text-colors-gray flex  justify-evenly pb-3 ">
         <h6>Description</h6>
         <h6>Additional Information</h6>
         <h6>
           Reviews <span className=" text-colors-green">(0)</span>
         </h6>
       </div>
-      <div class="max-w-sm w-full lg:max-w-full lg:flex justify-center">
-        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden ">
+      <div class="max-w-sm w-full lg:max-w-full lg:flex justify-center ">
+        <div class=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden pt-16  border-t border-colors-gray100 ">
           <img src={frontImg}></img>
         </div>
-        <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-          <div class="mb-8 flex flex-row">
-            <div class=" text-colors-lacivert font-bold text-xl mb-2">
-              <h5>the quick fox jumps over </h5>
-              <h6 className=" text-colors-gray max-w-2xl ">
+
+        <div class="border-t border-colors-gray100 p-4 flex flex-col justify-between  ">
+          <div class="mb-8 flex flex-row pt-9">
+            <div class=" text-colors-lacivert font-bold mb-2 max-w-sm pt-6">
+              <h5 className=" text-left">the quick fox jumps over </h5>
+              <h6 className=" text-colors-gray text-left ">
                 Met minim Mollie non desert Alamo est sit cliquey dolor do met
                 sent. RELIT official consequent door ENIM RELIT Mollie.
-                Excitation venial consequent sent nostrum met. Met minim Mollie
-                non desert Alamo est sit cliquey dolor do met sent. RELIT
-                official consequent door ENIM RELIT Mollie. Excitation venial
-                consequent sent nostrum met. Met minim Mollie non desert Alamo
-                est sit cliquey dolor do met sent. RELIT official consequent
-                door ENIM RELIT Mollie. Excitation venial consequent sent
-                nostrum met.
+                Excitation venial consequent sent nostrum met.
+              </h6>
+
+              <h6 className=" text-colors-gray text-left  ">
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
+              </h6>
+              <h6 className=" text-colors-gray text-left ">
+                Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                sent. RELIT official consequent door ENIM RELIT Mollie.
+                Excitation venial consequent sent nostrum met.
               </h6>
             </div>
-            <div className=" flex flex-col ">
+            <div className=" flex flex-col  pt-6">
               <ul className=" text-colors-gray list-image-[url(checkmark.svg)]">
-                <h5 className=" text-colors-lacivert">
+                <h5 className=" text-colors-lacivert text-left">
                   the quick fox jumps over
                 </h5>
 
@@ -44,10 +50,9 @@ function ProductDescription() {
               </ul>
               <div>
                 <ul className=" text-colors-gray list-image-[url(checkmark.svg)]">
-                  <h5 className=" text-colors-lacivert">
+                  <h5 className=" text-colors-lacivert text-left">
                     the quick fox jumps over
                   </h5>
-                  <li>the quick fox jumps over the lazy dog</li>
                   <li>the quick fox jumps over the lazy dog</li>
                   <li>the quick fox jumps over the lazy dog</li>
                   <li>the quick fox jumps over the lazy dog</li>
