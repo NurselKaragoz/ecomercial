@@ -1,7 +1,7 @@
 import image from "./row.png";
 function Container() {
   return (
-    <div class=" bg-colo">
+    <div className=" bg-colo">
       <img src={image} />
     </div>
   );

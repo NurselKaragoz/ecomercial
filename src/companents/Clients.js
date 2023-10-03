@@ -8,7 +8,7 @@ import img6 from "./col-md-2-5.svg";
 function Clients() {
   return (
     <div>
-      <div class=" flex flex-row justify-around mt-3 items-center">
+      <div className=" flex flex-row justify-around mt-3 items-center">
         <img src={img1}></img>
         <img src={img6}></img>
         <img src={img2}></img>

@@ -8,25 +8,25 @@ import { BsTwitter } from "react-icons/bs";
 function Header() {
   return (
     <div>
-      <div class="  flex bg-colors-lacivert  text-colors-white place-content-around p-3">
-        <div class=" flex ">
-          <div class="flex  items-center">
+      <div className="  flex bg-colors-lacivert  text-colors-white place-content-around p-3">
+        <div className=" flex ">
+          <div className="flex  items-center">
             <BsTelephone />
-            <h6 class="pl-1">(225) 555-0118 </h6>
+            <h6 className="pl-1">(225) 555-0118 </h6>
           </div>
 
-          <div class="flex items-center pl-4">
+          <div className="flex items-center pl-4">
             <TfiEmail />
-            <h6 class="pl-1">michelle.rivera@example.com</h6>
+            <h6 className="pl-1">michelle.rivera@example.com</h6>
           </div>
         </div>
 
-        <div class=" flex items-center">
+        <div className=" flex items-center">
           <h6>Follow Us and get a chance to win 80% off</h6>
         </div>
 
-        <div class=" flex items-center space-x-2">
-          <h6 class="pr-2">Follow Us:</h6>
+        <div className=" flex items-center space-x-2">
+          <h6 className="pr-2">Follow Us:</h6>
           <BsInstagram />
           <FaYoutube />
           <BsFacebook />
