@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { data } from "./Data";
 import Productcard from "./ProductCard";
 import image1 from "./blogimg.png";
@@ -26,9 +27,11 @@ function Item() {
           <Productcard key={product.id} />
         ))}
       </div>
-      <button class="bg-transparent text-colors-blue  font-bold border rounded-lg border-colors-blue p-6 m-3">
-        LOAD MORE PRODUCT
-      </button>
+      <Link to="/productlist">
+        <button class="bg-transparent text-colors-blue  font-bold border rounded-lg border-colors-blue p-6 m-3">
+          LOAD MORE PRODUCT
+        </button>
+      </Link>
     </div>
   );
 }

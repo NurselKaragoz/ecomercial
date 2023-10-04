@@ -13,6 +13,7 @@ import Service from "./companents/Service";
 import ProductPage from "./companents/ProductPage";
 import Home from "./companents/Home";
 import AboutPage from "./companents/AbuotPage";
+import ProductListPage from "./companents/ProductListPage";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
       <Switch>
         <Route path="/products" component={ProductPage} />
         <Route path="/about" component={AboutPage} />
+        <Route path="/productlist" component={ProductListPage} />
+
         <Route path="/" component={Home} />
       </Switch>
 
