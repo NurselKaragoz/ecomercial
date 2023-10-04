@@ -1,5 +1,4 @@
 import frontImg from "./images/unsplash_front.png";
-import { AiOutlineCheck } from "react-icons/ai";
 
 function ProductDescription() {
   return (
@@ -12,7 +11,7 @@ function ProductDescription() {
         </h6>
       </div>
       <div class="max-w-sm w-full lg:max-w-full lg:flex justify-center ">
-        <div class=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden pt-16  border-t border-colors-gray100 ">
+        <div class=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden pt-16  border-t border-colors-gray100  bg-blend-overlay">
           <img src={frontImg}></img>
         </div>
 

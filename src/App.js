@@ -10,9 +10,9 @@ import Navigator from "./companents/Navigator";
 import Footer from "./companents/Footer";
 import About from "./companents/About";
 import Service from "./companents/Service";
-import Blog from "./companents/Blog";
-import ProductList from "./companents/ProductList";
+import ProductPage from "./companents/ProductPage";
 import Home from "./companents/Home";
+import AboutPage from "./companents/AbuotPage";
 
 function App() {
   return (
@@ -21,7 +21,8 @@ function App() {
       <Navigator />
 
       <Switch>
-        <Route path="/products" component={ProductList} />
+        <Route path="/products" component={ProductPage} />
+        <Route path="/about" component={AboutPage} />
         <Route path="/" component={Home} />
       </Switch>
 

@@ -1,4 +1,3 @@
-import { Button } from "bootstrap";
 import image from "./images/hero-cover-1.png";
 function Container() {
   return (

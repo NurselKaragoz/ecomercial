@@ -4,7 +4,6 @@ import { LiaShoppingCartSolid } from "react-icons/lia";
 import { AiOutlineHeart } from "react-icons/ai";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
 
 function Navigator() {
   return (
@@ -15,12 +14,16 @@ function Navigator() {
         </h3>
       </div>
       <div className="text-colors-gray list-none flex flex-row space-x-3 items-center">
-        <li>Home</li>
+        <Link to="/">
+          <li>Home</li>
+        </Link>
         <Link to="/products">
           <li>Shop</li>
         </Link>
         <RiArrowDropDownLine />
-        <li>About</li>
+        <Link to="/about">
+          <li>About</li>
+        </Link>
         <li>Blog</li>
         <li>Contact</li>
         <li>Pages</li>
