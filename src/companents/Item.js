@@ -18,7 +18,7 @@ function Item() {
         <h3 className=" text-colors-gray">Featured Products</h3>
         <h2 className=" text-colors-lacivert">BESTSELLER PRODUCT</h2>
         <p className=" text-colors-gray">
-          Problems trying to resolve the conflict between{" "}
+          Problems trying to resolve the conflict between
         </p>
       </div>
       <div className=" flex flex-row flex-wrap gap-20 justify-center pt-10">
