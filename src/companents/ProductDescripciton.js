@@ -3,7 +3,7 @@ import frontImg from "./images/unsplash_front.png";
 function ProductDescription() {
   return (
     <div>
-      <div className=" text-colors-gray flex  justify-evenly pb-3 ">
+      <div className=" text-colors-gray flex  justify-evenly pb-3 pt-10">
         <h6>Description</h6>
         <h6>Additional Information</h6>
         <h6>
