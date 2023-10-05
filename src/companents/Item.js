@@ -28,7 +28,7 @@ function Item() {
         ))}
       </div>
       <Link to="/productlist">
-        <button class="bg-transparent text-colors-blue  font-bold border rounded-lg border-colors-blue p-6 m-3">
+        <button className="bg-transparent text-colors-blue  font-bold border rounded-lg border-colors-blue p-6 m-3">
           LOAD MORE PRODUCT
         </button>
       </Link>

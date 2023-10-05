@@ -20,7 +20,7 @@ function AboutContact() {
           <h5 className=" text-colors-lacivert">Get Support</h5>
           <button
             type="button"
-            class="inline-block rounded-full border-2 border-colors-blue px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-colors-blue transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            className="inline-block rounded-full border-2 border-colors-blue px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-colors-blue transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
             data-te-ripple-init
           >
             Submit Request
@@ -36,7 +36,7 @@ function AboutContact() {
           <h5 className=" text-colors-white">Get Support</h5>
           <button
             type="button"
-            class="inline-block rounded-full border-2 border-colors-blue px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-colors-blue transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            className="inline-block rounded-full border-2 border-colors-blue px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-colors-blue transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
             data-te-ripple-init
           >
             Submit Request
@@ -52,7 +52,7 @@ function AboutContact() {
           <h5 className=" text-colors-lacivert">Get Support</h5>
           <button
             type="button"
-            class="inline-block rounded-full border-2 border-colors-blue px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-colors-blue transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            className="inline-block rounded-full border-2 border-colors-blue px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-colors-blue transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
             data-te-ripple-init
           >
             Submit Request
