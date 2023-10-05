@@ -18,6 +18,7 @@ module.exports = {
         green100: "#aaebd6",
         blue200: "#2A7CC7",
         yellow: "#F3CD03",
+        red: "#E74040",
       },
       background: {
         productbg: "url('companents/images/backs.png')",
