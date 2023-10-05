@@ -14,7 +14,7 @@ import ProductPage from "./companents/ProductPage";
 import Home from "./companents/Home";
 import ProductListPage from "./companents/ProductListPage";
 import ContactPage from "./companents/ContactPage";
-import AbouPage from "./companents/images/AboutPage";
+import AboutPage from "./companents/AboutPage";
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
         <Route path="/products" component={ProductPage} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/productlist" component={ProductListPage} />
-        <Route path="/about" component={AbouPage} />
+        <Route path="/about" component={AboutPage} />
 
         <Route path="/" component={Home} />
       </Switch>
