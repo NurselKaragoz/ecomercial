@@ -10,7 +10,7 @@ function Container() {
         <p className=" text-colors-gray max-w-xs">
           We know how large objects will act, but things on a small scale.
         </p>
-        <button class=" bg-colors-blue text-colors-white  py-2 px-4  rounded font-semibold  w-fit">
+        <button className=" bg-colors-blue text-colors-white  py-2 px-4  rounded font-semibold  w-fit">
           SHOP NOW
         </button>
       </div>

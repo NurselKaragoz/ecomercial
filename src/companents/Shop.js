@@ -42,7 +42,7 @@ function Shop() {
             <BsCircleFill size={30} color="orange" />
             <BsCircleFill size={30} color=" dark blue" />
           </div>
-          <button class=" bg-colors-blue text-colors-white font-bold py-2 px-4 rounded max-w-fit p-2">
+          <button className=" bg-colors-blue text-colors-white font-bold py-2 px-4 rounded max-w-fit p-2">
             Select Options
           </button>
         </div>

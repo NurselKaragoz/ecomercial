@@ -4,6 +4,7 @@ import AboutProblem from "./AboutProblem";
 import AboutVideoCard from "./AboutVideoCard";
 import AboutWork from "./AboutWork";
 import Clients from "./Clients";
+import ClientsAdd from "./ClientsAdd";
 
 function AboutPage() {
   return (
@@ -12,6 +13,7 @@ function AboutPage() {
       <AboutProblem />
       <AboutNumbers />
       <AboutVideoCard />
+      <ClientsAdd />
       <Clients />
       <AboutWork />
     </div>
