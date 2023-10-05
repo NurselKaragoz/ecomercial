@@ -13,7 +13,7 @@ function Navigator() {
           Bandage
         </h3>
       </div>
-      <div className="text-colors-gray list-none flex flex-row space-x-3 items-center">
+      <div className="text-colors-gray list-none flex flex-row space-x-3 items-center ">
         <Link to="/">
           <li>Home</li>
         </Link>
@@ -24,9 +24,9 @@ function Navigator() {
         <Link to="/about">
           <li>About</li>
         </Link>
-        <li>Blog</li>
-        <li>Contact</li>
-        <li>Pages</li>
+        <Link to="/contact">
+          <li>Contact</li>
+        </Link>
       </div>
       <div className="text-colors-blue flex items-center space-x-2 ">
         <IoPersonOutline />

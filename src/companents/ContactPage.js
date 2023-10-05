@@ -5,7 +5,7 @@ import { BsFacebook } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
 import AboutContact from "./AboutContact";
 import LetsTalk from "./LetsTalk";
-function AboutPage() {
+function ContactPage() {
   return (
     <div>
       <div className=" flex flex-row justify-center">
@@ -36,4 +36,4 @@ function AboutPage() {
     </div>
   );
 }
-export default AboutPage;
+export default ContactPage;
