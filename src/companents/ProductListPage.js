@@ -1,5 +1,6 @@
-import Productcard from "./ProductCard";
-import { BsCircleFill } from "react-icons/bs";
+import ProductCardList from "./ProductCardList";
+import ShopListCard from "./ShopListCard";
+import Clients from "./Clients";
 
 function ProductListPage() {
   const productList = [
@@ -16,19 +17,23 @@ function ProductListPage() {
     { id: 11 },
     { id: 12 },
   ];
+  const shopList = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
   return (
     <div>
+      <h2 className=" text-colors-lacivert text-left pl-44 bg-colors-gray100 pt-5 mb-0">
+        Shop
+      </h2>
+      <div className=" flex flex-row flex-wrap gap-15 justify-center pt-10 bg-colors-gray100  mt-0">
+        {shopList.map((shoplist) => (
+          <ShopListCard key={shoplist.id} />
+        ))}
+      </div>
       <div className=" flex flex-row flex-wrap gap-20 justify-center pt-10">
         {productList.map((product) => (
-          <Productcard key={product.id} />
+          <ProductCardList key={product.id} />
         ))}
-        <div className=" flex flex-row  gap-2 pb-5 text-colors-lacivert">
-          <BsCircleFill size={30} color=" blue" />
-          <BsCircleFill size={30} color=" green" />
-          <BsCircleFill size={30} color="orange" />
-          <BsCircleFill size={30} color=" dark blue" />
-        </div>
       </div>
+      <Clients />
     </div>
   );
 }
