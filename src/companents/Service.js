@@ -13,13 +13,18 @@ function Service() {
       </div>
       <div className=" text-colors-blue flex gap-5 justify-center pt-24">
         <div className=" max-w-xs flex flex-col ">
-          <BiSolidBookReader size={70} />
+          <div className=" flex justify-center">
+            <BiSolidBookReader size={70} />
+          </div>
 
           <h3 className="text-colors-lacivert">Easy Wins</h3>
           <p className="text-colors-gray">Get your best looking smile now!</p>
         </div>
         <div className="text-center max-w-xs justify-items-center ">
-          <CgReadme size={70} />
+          <div className=" flex justify-center">
+            <CgReadme size={70} />
+          </div>
+
           <h3 className="text-colors-lacivert">Concrete</h3>
           <p className="text-colors-gray">
             Defalcate is most focused in helping you discover your most
@@ -27,7 +32,9 @@ function Service() {
           </p>
         </div>
         <div className=" max-w-xs ">
-          <FaArrowTrendUp size={70} />
+          <div className=" flex justify-center">
+            <FaArrowTrendUp size={70} />
+          </div>
 
           <h3 className="text-colors-lacivert">Hack Growth</h3>
           <p className="text-colors-gray">
