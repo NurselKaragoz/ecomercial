@@ -1,4 +1,5 @@
 import AboutCompany from "./AboutCompany";
+import AboutMeet from "./AboutMeet";
 import AboutNumbers from "./AboutNumbers";
 import AboutProblem from "./AboutProblem";
 import AboutVideoCard from "./AboutVideoCard";
@@ -13,6 +14,7 @@ function AboutPage() {
       <AboutProblem />
       <AboutNumbers />
       <AboutVideoCard />
+      <AboutMeet />
       <ClientsAdd />
       <Clients />
       <AboutWork />
