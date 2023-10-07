@@ -14,17 +14,17 @@ function Navigator() {
         </h3>
       </div>
       <div className="text-colors-gray list-none flex flex-row space-x-3 items-center ">
-        <Link to="/">
+        <Link className=" text-colors-gray no-underline" to="/">
           <li>Home</li>
         </Link>
-        <Link to="/products">
+        <Link className=" text-colors-gray no-underline" to="/products">
           <li>Shop</li>
         </Link>
         <RiArrowDropDownLine />
-        <Link to="/about">
+        <Link className=" text-colors-gray no-underline" to="/about">
           <li>About</li>
         </Link>
-        <Link to="/contact">
+        <Link className=" text-colors-gray no-underline" to="/contact">
           <li>Contact</li>
         </Link>
       </div>
