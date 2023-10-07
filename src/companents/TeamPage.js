@@ -1,3 +1,4 @@
+import StartTrial from "./StartTrial";
 import TeamCard from "./TeamCard";
 import InnovationPart from "./innovationpart";
 
@@ -24,6 +25,7 @@ function TeamPage() {
           <TeamCard key={teamlist.id} />
         ))}
       </div>
+      <StartTrial />
     </div>
   );
 }
