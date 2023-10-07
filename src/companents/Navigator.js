@@ -27,6 +27,9 @@ function Navigator() {
         <Link className=" text-colors-gray no-underline" to="/contact">
           <li>Contact</li>
         </Link>
+        <Link className=" text-colors-gray no-underline" to="/team">
+          <li>Team</li>
+        </Link>
       </div>
       <div className="text-colors-blue flex items-center space-x-2 ">
         <IoPersonOutline />
