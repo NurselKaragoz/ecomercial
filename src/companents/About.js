@@ -1,5 +1,5 @@
-import introImg from "./about.png";
-import introImgSec from "./aboutpic.png";
+import introImg from "./images/about.png";
+import introImgSec from "./images/aboutpic.png";
 
 function About() {
   return (

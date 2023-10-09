@@ -1,9 +1,9 @@
-import img1 from "./col-md-2.svg";
-import img2 from "./col-md-2-1.svg";
-import img3 from "./col-md-2-2.svg";
-import img4 from "./col-md-2-3.svg";
-import img5 from "./col-md-2-4.svg";
-import img6 from "./col-md-2-5.svg";
+import img1 from "./images/col-md-2.svg";
+import img2 from "./images/col-md-2-1.svg";
+import img3 from "./images/col-md-2-2.svg";
+import img4 from "./images/col-md-2-3.svg";
+import img5 from "./images/col-md-2-4.svg";
+import img6 from "./images/col-md-2-5.svg";
 
 function Clients() {
   return (
