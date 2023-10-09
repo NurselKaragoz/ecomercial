@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { data } from "./Data";
 import Productcard from "./ProductCard";
-import image1 from "./blogimg.png";
+import image1 from "./images/blogimg.png";
 function Item() {
   const products = [
     { id: 1, img: image1 },

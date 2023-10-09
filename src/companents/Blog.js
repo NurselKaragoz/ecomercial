@@ -1,5 +1,5 @@
-import blogImg from "./blogimg.png";
-import blogImgSec from "./blogImgSec.png";
+import blogImg from "./images/blogimg.png";
+import blogImgSec from "./images/blogImgSec.png";
 function Blog() {
   return (
     <div>

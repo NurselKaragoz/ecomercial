@@ -1,6 +1,6 @@
-import image3 from "./unsplash_muOHbrFGEQY.jpg";
-import image2 from "./unsplash_MKvjc2kar7Q.jpg";
-import image from "./unsplash_Bd7gNnWJBkU (1).jpg";
+import image3 from "./images/unsplash_muOHbrFGEQY.jpg";
+import image2 from "./images/unsplash_MKvjc2kar7Q.jpg";
+import image from "./images/unsplash_Bd7gNnWJBkU (1).jpg";
 function Introduction() {
   return (
     <div className=" flex flex-row justify-center gap-3 pt-20  ">
