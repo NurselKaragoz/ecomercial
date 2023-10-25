@@ -8,7 +8,7 @@ function Blog() {
         <h3 className=" text-colors-lacivert">Featured Posts</h3>
       </div>
 
-      <div className="flex justify-center pt-5 gap-2 md:flex-row flex-col">
+      <div className="flex justify-center pt-5 gap-2 md:flex-row flex-col items-center">
         <div className="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 md:max-w-xl md:flex-row">
           <img
             className=" w-full rounded-t-lg object-cover  md:!rounded-none md:!rounded-l-lg"
