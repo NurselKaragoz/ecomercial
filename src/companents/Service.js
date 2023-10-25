@@ -11,7 +11,7 @@ function Service() {
           Problems trying to resolve the conflict between
         </p>
       </div>
-      <div className=" text-colors-blue flex gap-5 justify-center pt-24">
+      <div className=" text-colors-blue flex gap-5 justify-center pt-24 flex-col md:flex-row md:justify-center">
         <div className=" max-w-xs flex flex-col ">
           <div className=" flex justify-center">
             <BiSolidBookReader size={70} />

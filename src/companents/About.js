@@ -1,14 +1,14 @@
 import introImg from "./images/about.png";
-import introImgSec from "./images/aboutpic.png";
+import introImgSec from "./images/homeaboutimg2.png";
 
 function About() {
   return (
-    <div className="flex flex-col md:flex-row p-10 justify-center">
-      <div className="md:w-1/2 flex gap-2">
+    <div className="flex flex-col-reverse md:flex-row p-10 justify-center ">
+      <div className="flex gap-2">
         <img src={introImg} alt="Image 1" className="w-full" />
         <img src={introImgSec} alt="Image 2" className="w-full" />
       </div>
-      <div className="text-left max-w-2xl pt-5 md:pl-10">
+      <div className="text-left max-w-2xl pt-5 pl-5 ">
         <h5 className="text-colors-blue pb-3">Featured Products</h5>
         <h2 className="text-colors-lacivert">We love what we do</h2>
         <p className="text-colors-gray pt-3">
