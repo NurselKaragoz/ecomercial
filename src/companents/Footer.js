@@ -26,28 +26,28 @@ function Footer() {
           <li>Blog</li>
         </div>
         <div className="list-none text-left">
-          <h5 className="text-colors-lacivert">Legal</h5>
+          <h5 className="text-colors-lacivert pt-3">Legal</h5>
           <li>About Us</li>
           <li>Carrier</li>
           <li>We are hiring</li>
           <li>Blog</li>
         </div>
         <div className="list-none text-left">
-          <h5 className="text-colors-lacivert">Features</h5>
+          <h5 className="text-colors-lacivert pt-3">Features</h5>
           <li>Business Marketing</li>
           <li>User Analytics</li>
           <li>Live Chat</li>
           <li>Unlimited Support</li>
         </div>
         <div className="list-none text-left">
-          <h5 className="text-colors-lacivert">Resources</h5>
+          <h5 className="text-colors-lacivert pt-3">Resources</h5>
           <li>IOS & Android</li>
           <li>Watch a Demo</li>
           <li>Customers</li>
           <li>API</li>
         </div>
         <div className="list-none text-left">
-          <h5 className="text-colors-lacivert">Get in Touch</h5>
+          <h5 className="text-colors-lacivert pt-3">Get in Touch</h5>
           <form className="border rounded-md">
             <label className="bg-colors-gray100 border p-3">
               <input type="text" name="name" placeholder="Your Email" />

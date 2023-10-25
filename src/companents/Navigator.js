@@ -15,11 +15,8 @@ function Navigator() {
             Bandage
           </h3>
         </div>
-        <div className="text-colors-gray list-none flex flex-row space-x-3 items-center mb-4 flex-wrap md:mb-0 md:flex md:flex-col">
-          <Link
-            className="text-colors-gray no-underline flex md:flex-col"
-            to="/"
-          >
+        <div className="text-colors-gray list-none flex flex-col space-x-3 items-center mb-4 flex-wrap md:mb-0 md:flex md:flex-row">
+          <Link className="text-colors-gray no-underline" to="/">
             <li>Home</li>
           </Link>
           <Link className="text-colors-gray no-underline" to="/products">

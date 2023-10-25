@@ -36,8 +36,8 @@ function ProductDescription() {
                 Excitation venial consequent sent nostrum met.
               </h6>
             </div>
-            <div className=" flex flex-col  pt-6">
-              <ul className=" text-colors-gray list-image-[url(checkmark.svg)]">
+            <div className=" flex flex-col  pt-6 ">
+              <ul className=" text-colors-gray list-image-[url(checkmark.svg)] ">
                 <h5 className=" text-colors-lacivert text-left">
                   the quick fox jumps over
                 </h5>
