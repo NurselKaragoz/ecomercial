@@ -20,7 +20,7 @@ function Item() {
           Problems trying to resolve the conflict between
         </p>
       </div>
-      <div className=" flex flex-col md:flex-row flex-wrap gap-20 justify-center pt-10">
+      <div className=" flex flex-col md:flex-row flex-wrap gap-20 justify-center pt-10 items-center">
         {products.map((product) => (
           <Productcard key={product.id} />
         ))}
