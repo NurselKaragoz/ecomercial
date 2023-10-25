@@ -22,16 +22,15 @@ function Item() {
           Problems trying to resolve the conflict between
         </p>
       </div>
-      <div className=" flex flex-row flex-wrap gap-20 justify-center pt-10">
+      <div className=" flex flex-col md:flex-row flex-wrap gap-20 justify-center pt-10">
         {products.map((product) => (
           <Productcard key={product.id} />
         ))}
       </div>
-      <Link to="/productlist">
-        <button className="bg-transparent text-colors-blue  font-bold border rounded-lg border-colors-blue p-6 m-3">
-          LOAD MORE PRODUCT
-        </button>
-      </Link>
+
+      <button className="bg-transparent text-colors-blue  font-bold border rounded-lg border-colors-blue p-6 m-3">
+        LOAD MORE PRODUCT
+      </button>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import BestsellerCard from "./BestsellerCard";
 import Clients from "./Clients";
-import "./Header";
-import Navigator from "./Navigator";
+
 import ProductDescription from "./ProductDescripciton";
 import Shop from "./Shop";
 
@@ -16,25 +15,28 @@ function ProductList() {
     { id: 7 },
     { id: 8 },
   ];
-  return (
-    <div>
-      <Shop />
 
+  return (
+    <div className="p-4 md:p-10">
+      <Shop />
       <ProductDescription />
-      <div className=" pt-12 pb-12">
-        <h1 className=" text-colors-lacivert text-left pl-40">
+
+      <div className="pt-10 md:pt-12 pb-12">
+        <h1 className="text-colors-lacivert text-left md:text-center pl-4 md:pl-40">
           BESTSELLER PRODUCT
         </h1>
-        <div className=" flex flex-row flex-wrap gap-20 justify-center pt-10">
+        <div className="flex flex-col md:flex-row flex-wrap gap-6 md:gap-20 justify-center pt-6">
           {productList.map((product) => (
             <BestsellerCard key={product.id} />
           ))}
         </div>
       </div>
-      <div className=" p-10">
+
+      <div className="p-4 md:p-10">
         <Clients />
       </div>
     </div>
   );
 }
+
 export default ProductList;
