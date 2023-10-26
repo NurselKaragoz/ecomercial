@@ -16,6 +16,7 @@ function Shop() {
         {/* <div className="">
           <img src={couch} />
         </div> */}
+        <Carousel />
 
         <div className=" text-colors-gray flex flex-col  max-w-lg text-left gap-2">
           <h4 className=" text-colors-lacivert">Floating Phone</h4>
@@ -47,7 +48,6 @@ function Shop() {
           </button>
         </div>
       </div>
-      <Carousel />
     </div>
   );
 }
