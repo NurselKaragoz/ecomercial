@@ -5,8 +5,8 @@ import { BsTwitter } from "react-icons/bs";
 
 function TeamCard() {
   return (
-    <div className="w-full p-4">
-      <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className=" p-4">
+      <div className="rounded overflow-hidden shadow-lg">
         <img className="w-full" src={teampic} alt="Team Member" />
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2 text-colors-lacivert">

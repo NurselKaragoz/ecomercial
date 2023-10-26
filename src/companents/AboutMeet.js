@@ -8,7 +8,7 @@ function AboutMeet() {
         Problems trying to resolve the conflict between <br />
         the two major realms of Classical physics: Newtonian mechanics
       </p>
-      <div className="flex flex-col md:flex-row md:justify-center items-center  md:gap-5">
+      <div className="flex md:flex-row md:gap-5 items-center flex-col md:justify-center">
         <TeamCard />
         <TeamCard />
         <TeamCard />
