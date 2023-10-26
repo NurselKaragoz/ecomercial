@@ -20,7 +20,7 @@ function Introduction() {
         <div className="flex flex-col gap-3">
           <div className="max-w-md bg-white shadow dark:bg-gray-800 dark:border-gray-700">
             <img className="rounded-t-lg" src={image2} alt="" />
-            <div class="absolute top-20 h-40 w-80 bg-colors-blue300 opacity-75 text-left">
+            <div class="absolute h-40 w-80 bg-colors-blue300 opacity-75 text-left ">
               <h6 className=" text-colors-white text-center">
                 Top Product Of the Week
               </h6>
@@ -31,7 +31,7 @@ function Introduction() {
           </div>
           <div className="max-w-md bg-white shadow dark:bg-gray-800 dark:border-gray-700">
             <img className="rounded-t-lg" src={image3} alt="" />
-            <div class="absolute bottom-2 h-40 w-80 bg-colors-blue300 opacity-75 text-left">
+            <div class="absolute  h-40 w-80 bg-colors-blue300 opacity-75 text-left">
               <h6 className=" text-colors-white text-center">
                 Top Product Of the Week
               </h6>

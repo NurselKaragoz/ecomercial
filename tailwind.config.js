@@ -24,10 +24,8 @@ module.exports = {
       background: {
         productbg: "url('companents/images/backs.png')",
       },
-      // listStyleImage: {
-      //   checkmark: 'url("companents/checkmark.svg")',
-      // },
     },
   },
-  plugins: [],
+
+  plugins: [require("daisyui")],
 };

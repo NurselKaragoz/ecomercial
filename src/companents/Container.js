@@ -2,7 +2,7 @@ import image from "./images/hero-cover-1.png";
 
 function Container() {
   return (
-    <div className="flex flex-col md:flex-row bg-gradient-to-br from-colors-blue100 to-colors-green100 rounded-xl m-4 md:m-10">
+    <div className="flex flex-col md:flex-row bg-gradient-to-br from-colors-blue100 to-colors-green100 rounded-xl m-4 md:m-10 items-center">
       <div className="text-center flex flex-col justify-center px-6 md:pl-24">
         <h5 className="text-colors-blue200 pb-2 md:pb-12">SUMMER 2020</h5>
         <h1 className="text-colors-lacivert font-bold text-3xl md:text-6xl pb-4">
