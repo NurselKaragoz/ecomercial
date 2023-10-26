@@ -3,7 +3,7 @@ import workimg from "./images/workwithus.png";
 function AboutWork() {
   return (
     <div className="flex flex-col md:flex-row justify-between bg-colors-blue200">
-      <div className="text-colors-white text-left flex flex-col justify-center md:w-1/2 p-6 md:pl-36">
+      <div className="text-colors-white text-left flex flex-col justify-center md:w-1/2 p-6 md:pl-36 items-center">
         <h5>Work With Us</h5>
         <h2>Now Let’s grow Yours</h2>
         <p>

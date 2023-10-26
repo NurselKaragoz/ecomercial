@@ -19,13 +19,14 @@ function ProductList() {
   return (
     <div className="p-4 md:p-10">
       <Shop />
+
       <ProductDescription />
 
       <div className="pt-10 md:pt-12 pb-12">
-        <h1 className="text-colors-lacivert text-left md:text-center pl-4 md:pl-40">
+        <h1 className="text-colors-lacivert  md:text-left pl-4 md:pl-40 text-center">
           BESTSELLER PRODUCT
         </h1>
-        <div className="flex flex-col md:flex-row flex-wrap gap-6 md:gap-20 justify-center pt-6">
+        <div className="flex flex-col md:flex-row flex-wrap gap-6 md:gap-20  pt-6 items-center">
           {productList.map((product) => (
             <BestsellerCard key={product.id} />
           ))}
