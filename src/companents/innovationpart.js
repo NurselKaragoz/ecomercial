@@ -11,9 +11,9 @@ function InnovationPart() {
         <h5 className="text-colors-gray">WHAT WE DO</h5>
         <h2 className="text-colors-lacivert">Innovation tailored for you</h2>
       </div>
-      <div className="flex flex-row">
+      <div className="flex flex-col md:flex-row">
         <img src={innovationpic} className="w-full md:w-1/1 object-cover" />
-        <div className="flex gap-2 flex-wrap flex-row ">
+        <div className="flex gap-2 flex-wrap flex-row  justify-center ">
           <img src={innovationpic2} />
           <img src={innovationpic3} />
           <img src={innovationpic4} />
