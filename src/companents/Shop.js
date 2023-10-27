@@ -2,7 +2,7 @@ import { AiFillStar } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
 import { BsCircleFill } from "react-icons/bs";
 import { GrFormNext } from "react-icons/gr";
-import Carousel from "./Carousel";
+import CarouselDefault from "./Carousel";
 function Shop() {
   return (
     <div className="bg-colors-gray100 pt-14 pb-14">
@@ -15,7 +15,7 @@ function Shop() {
         {/* <div className="">
           <img src={couch} />
         </div> */}
-        <Carousel />
+        <CarouselDefault />
 
         <div className=" text-colors-gray flex flex-col  max-w-lg text-left gap-2">
           <h4 className=" text-colors-lacivert">Floating Phone</h4>
