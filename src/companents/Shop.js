@@ -1,4 +1,3 @@
-import couch from "./images/carousel.png";
 import { AiFillStar } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
 import { BsCircleFill } from "react-icons/bs";
@@ -12,7 +11,7 @@ function Shop() {
         <GrFormNext size={30} />
         <h5>Shop</h5>
       </div>
-      <div className=" flex flex-row justify-center gap-10  ">
+      <div className=" flex md:flex-row justify-center gap-10 md:justify-center flex-col items-center ">
         {/* <div className="">
           <img src={couch} />
         </div> */}

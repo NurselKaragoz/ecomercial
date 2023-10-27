@@ -26,7 +26,7 @@ function ProductList() {
         <h1 className="text-colors-lacivert  md:text-left pl-4 md:pl-40 text-center">
           BESTSELLER PRODUCT
         </h1>
-        <div className="flex flex-col md:flex-row flex-wrap gap-6 md:gap-20  pt-6 items-center">
+        <div className="flex flex-col md:flex-row flex-wrap gap-6 md:gap-20  pt-6 items-center md:justify-center">
           {productList.map((product) => (
             <BestsellerCard key={product.id} />
           ))}
