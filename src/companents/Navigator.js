@@ -35,7 +35,9 @@ function Navigator() {
         </div>
         <div className="text-colors-blue flex items-center space-x-2">
           <IoPersonOutline />
-          <span className="hidden md:inline">Login / Register</span>
+          <Link className=" no-underline" to="/login">
+            <span className="hidden md:inline">Login / Register</span>
+          </Link>
           <BiSearch />
           <LiaShoppingCartSolid />1
           <AiOutlineHeart />1
