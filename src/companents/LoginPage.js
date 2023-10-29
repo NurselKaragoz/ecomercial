@@ -1,97 +1,73 @@
-import { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 
-export default function LoginPage() {
-  const [formData, setFormData] = useState({ username: "" });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+export default function App() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationError = {};
-    if (!formData.username.length < 3) {
-      validationError.username = "username is required";
-    }
-  };
+
   return (
-    <div className=" flex flex-col items-center ">
-      <form onSubmit={handleSubmit} class="w-full max-w-lg flex flex-col ">
-        <div class="flex flex-wrap -mx-3 mb-6  ">
-          <div class="w-full px-3 mb-6 md:mb-0">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-first-name"
-            >
-              Name
-            </label>
-            <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
-              type="text"
-              name="username"
-              onChange={handleChange}
-            />
-          </div>
-          <div class="w-full  px-3">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="e-mail"
-            >
-              Email
-            </label>
-            <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name"
-              type="text"
-            />
-          </div>
+    <div className="App">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-control">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            {...register("name", {
+              minLength: 3,
+            })}
+          />
+
+          {errors.name && errors.name.type === "minLength" && (
+            <p className="errorMsg">Name is not valid.</p>
+          )}
         </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
-          <div class="w-full px-3">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-password"
-            >
-              Password
-            </label>
-            <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-password"
-              type="password"
-              placeholder="******************"
-            />
-            <p class="text-gray-600 text-xs italic">
-              Make it more than 8 charecter
+        <div className="form-control">
+          <label>Email</label>
+          <input
+            type="text"
+            name="email"
+            {...register("email", {
+              required: true,
+              pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+            })}
+          />
+          {errors.email && errors.email.type === "required" && (
+            <p className="errorMsg">Email is required.</p>
+          )}
+          {errors.email && errors.email.type === "pattern" && (
+            <p className="errorMsg">Email is not valid.</p>
+          )}
+        </div>
+        <div className="form-control">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            {...register("password", {
+              required: true,
+              minLength: 6,
+            })}
+          />
+          {errors.password && errors.password.type === "required" && (
+            <p className="errorMsg">Password is required.</p>
+          )}
+          {errors.password && errors.password.type === "minLength" && (
+            <p className="errorMsg">
+              Password should be at-least 6 characters.
             </p>
-          </div>
+          )}
         </div>
-        <div class="flex flex-wrap -mx-3 mb-2">
-          <div class="w-full px-3 mb-6 md:mb-0">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
-            >
-              Role
-            </label>
-            <div class="relative">
-              <select
-                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="role_id"
-              >
-                <option id="1">Customer</option>
-                <option id="2">Store</option>
-                <option id="3">Admin</option>
-              </select>
-            </div>
-            <div>
-              <button
-                class=" bg-colors-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                type="submit"
-              >
-                Button
-              </button>
-            </div>
-          </div>
+        <div className="form-control">
+          <label></label>
+          <button type="submit">Login</button>
         </div>
       </form>
     </div>
