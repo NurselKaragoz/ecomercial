@@ -35,7 +35,7 @@ function Navigator() {
         </div>
         <div className="text-colors-blue flex items-center space-x-2">
           <IoPersonOutline />
-          <Link className=" no-underline" to="/login">
+          <Link className=" no-underline" to="/signup">
             <span className="hidden md:inline">Login / Register</span>
           </Link>
           <BiSearch />
