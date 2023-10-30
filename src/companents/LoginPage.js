@@ -15,8 +15,8 @@ export default function App() {
       .required("Password is required")
       .min(8, "Password must be at least 8 characters")
       .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
-        "Olmadı yar"
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*\W).{8,}$/,
+        "Password is not valid"
       ),
     confirmPassword: Yup.string()
       .required("Confirm Password is required")
@@ -32,15 +32,21 @@ export default function App() {
     formState: { errors },
   } = useForm(formOptions);
 
+  const instance = axios.create({
+    baseURL: "https://workinteck-fe-final.onrender.com",
+    timeout: 1000,
+  });
   const onSubmit = (data) => {
     console.log("form submit", data);
+    instance
+      .post("/signup", data)
+      .then((response) => {
+        console.log("Signup successful=>", response.data);
+      })
+      .catch((error) => {
+        console.error("Signup failed=>", error);
+      });
   };
-
-  // axios
-  //   .get("https://workinteck-fe-final.onrender.com")
-  //   .then(function (response) {
-  //     console.log(response);
-  //   });
 
   return (
     <div className="gap-5 flex flex-col">
