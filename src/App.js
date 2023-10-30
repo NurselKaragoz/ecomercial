@@ -30,7 +30,7 @@ function App() {
         <Route path="/productlist" component={ProductListPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/team" component={TeamPage} />
-        <Route path="/login" component={LoginPage} />
+        <Route path="/signup" component={LoginPage} />
 
         <Route path="/" component={Home} />
       </Switch>
