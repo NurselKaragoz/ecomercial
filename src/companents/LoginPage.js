@@ -1,10 +1,25 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 
 import * as Yup from "yup";
 
 export default function App() {
+  const NotWork = () => {
+    const [show, setShow] = React.useState(false);
+    // ❌ won't get notified, need to invoke unregister
+    return show && <input {...register("test")} />;
+  };
+  const [show, setShow] = React.useState(false);
+  const { control } = useForm({ shouldUnregister: true });
+
+  const Work = ({ control }) => {
+    const { show } = useWatch({ control });
+    // ✅ get notified at useEffect
+    return show && <input {...register("test1")} />;
+  };
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required(),
     name: Yup.string()
@@ -27,6 +42,11 @@ export default function App() {
   const onSubmit = (data) => {
     console.log(data);
   };
+  // axios
+  //   .get("https://workinteck-fe-final.onrender.com")
+  //   .then(function (response) {
+  //     console.log(response);
+  //   });
 
   return (
     <div className="gap-5 flex flex-col">
@@ -39,19 +59,10 @@ export default function App() {
               className="border-2 border-colors-lacivert rounded-md py-1 px-5"
               type="text"
               name="name"
-              {...register("name", {
-                minLength: 3,
-                required: true,
-              })}
+              {...register("name")}
             />
-            {errors.name && errors.name.type === "required" && (
-              <p className="text-colors-red">Name is required.</p>
-            )}
-            {errors.name && errors.name.type === "minLength" && (
-              <p className="errorMsg text-colors-red">
-                Name must be more than 3 characters
-              </p>
-            )}
+
+            <p className="text-colors-red"> {errors.name?.message}</p>
           </div>
         </div>
         <div className=" gap-3">
@@ -61,40 +72,24 @@ export default function App() {
             className=" border-2 border-colors-lacivert rounded-md py-1 px-5 gap-3"
             type="text"
             name="email"
-            {...register("email", {
-              required: true,
-              pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-            })}
+            {...register("email")}
           />
-          {errors.email && errors.email.type === "required" && (
-            <p className="errorMsg text-colors-red">Email is required.</p>
-          )}
-          {errors.email && errors.email.type === "pattern" && (
-            <p className="errorMsg text-colors-red">Email is not valid.</p>
-          )}
+
+          <p className="text-colors-red"> {errors.email?.message}</p>
         </div>
         <div className="">
           <label>Password</label>
           <br />
           <input
-            className=" border-2 border-colors-lacivert rounded-md py-1 px-5"
-            type="password"
             name="password"
-            {...register("password", {
-              required: true,
-              minLength: 8,
-              pattern:
-                /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-]).$/,
-            })}
+            type="password"
+            {...register("password")}
+            className={` ${
+              errors.password ? "is-invalid" : ""
+            } border-2 border-colors-lacivert rounded-md py-1 px-5 `}
           />
-          {errors.password && errors.password.type === "pattern" && (
-            <p className="errorMsg text-colors-red">Password is not valid</p>
-          )}
-          {errors.password && errors.password.type === "minLength" && (
-            <p className="errorMsg text-colors-red">
-              Password should be at-least 8 characters.
-            </p>
-          )}
+
+          <p className="text-colors-red"> {errors.password?.message}</p>
         </div>
         <div></div>
 
@@ -113,7 +108,7 @@ export default function App() {
             {errors.confirmPassword?.message}
           </div>
         </div>
-        <di>
+        <div>
           <label>Role</label>
           <br />
           <select
@@ -124,8 +119,16 @@ export default function App() {
             <option value="store">store</option>
             <option value="admin">admin</option>
           </select>
-        </di>
+        </div>
         <div>
+          <div>
+            <div>
+              // ✅ get notified at useForm's useEffect123
+              {show && <input {...register("test2")} />}
+              <NotWork />
+              <Work control={control} />
+            </div>{" "}
+          </div>
           <button
             className=" bg-colors-lacivert px-5 py-2 text-colors-white rounded-md mt-4 mb-4"
             type="submit"
