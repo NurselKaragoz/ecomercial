@@ -33,13 +33,29 @@ export default function App() {
   } = useForm(formOptions);
 
   const instance = axios.create({
-    baseURL: "https://workinteck-fe-final.onrender.com",
+    baseURL: "https://workinteck-fe-final.onrender.com/",
     timeout: 1000,
   });
   const onSubmit = (data) => {
     console.log("form submit", data);
+
+    const postData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      role_id: data.role_id,
+    };
+
+    if (data.role_id === "2") {
+      postData.store = {
+        name: data["storename"],
+        tax_no: data["tax_no"],
+        bank_account: data["bank_account"],
+      };
+    }
+    console.log("post data=>", postData);
     instance
-      .post("/signup", data)
+      .post("/signup", postData)
       .then((response) => {
         console.log("Signup successful=>", response.data);
       })
@@ -131,8 +147,8 @@ export default function App() {
                 <input
                   className=" border-2 border-colors-lacivert rounded-md py-1 px-5 gap-3"
                   type="text"
-                  name="store"
-                  {...register("store")}
+                  name="name"
+                  {...register("storename")}
                 />
               </div>
               <div className=" gap-3">
@@ -142,6 +158,7 @@ export default function App() {
                   className=" border-2 border-colors-lacivert rounded-md py-1 px-5 gap-3"
                   type="number"
                   name="tax_no"
+                  {...register("tax_no")}
                 />
               </div>
               <div className=" gap-3">
@@ -151,6 +168,7 @@ export default function App() {
                   className=" border-2 border-colors-lacivert rounded-md py-1 px-5 gap-3"
                   type="number"
                   name="bank_account"
+                  {...register("bank_account")}
                 />
               </div>
             </div>
