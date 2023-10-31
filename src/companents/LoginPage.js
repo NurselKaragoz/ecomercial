@@ -33,7 +33,7 @@ export default function App() {
   } = useForm(formOptions);
 
   const instance = axios.create({
-    baseURL: "https://workinteck-fe-final.onrender.com/",
+    baseURL: "https://workintech-fe-ecommerce.onrender.com",
     timeout: 1000,
   });
   const onSubmit = (data) => {
@@ -57,7 +57,7 @@ export default function App() {
     instance
       .post("/signup", postData)
       .then((response) => {
-        console.log("Signup successful=>", response.data);
+        console.log("Signup successful=>", response.postData);
       })
       .catch((error) => {
         console.error("Signup failed=>", error);
