@@ -7,16 +7,19 @@ import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Provider } from "react-redux";
+import store from "./Store/Store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <ToastContainer />
+  <Provider store={store}>
+    <BrowserRouter>
+      <React.StrictMode>
+        <ToastContainer />
 
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
