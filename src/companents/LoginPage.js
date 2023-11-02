@@ -4,7 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function App() {
   const history = useHistory();
 
@@ -34,6 +35,7 @@ export default function App() {
 
   const [registerMode, setRegisterMode] = React.useState("1");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [navigateToPage, setNavigateToPage] = useState();
 
   const {
     register,
@@ -67,10 +69,11 @@ export default function App() {
       .post("/signup", postData)
       .then((response) => {
         console.log("Signup successful=>", response.postData);
-        history.push("/previous-page", {
-          message:
-            "You need to click the link in the email to activate your account!",
-        });
+        toast.success(
+          "You need to click link in email to activate your account!"
+        );
+
+        history.push("/previous-page", {});
       })
 
       .catch((error) => {
