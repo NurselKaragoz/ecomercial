@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { set, useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-
+import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
 export default function App() {
+  const history = useHistory();
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required(),
     name: Yup.string()
@@ -16,15 +18,22 @@ export default function App() {
       .min(8, "Password must be at least 8 characters")
       .matches(
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*\W).{8,}$/,
-        "Password is not valid"
+        "Your password should include one lower case one upper case one number and one symbol"
       ),
     confirmPassword: Yup.string()
       .required("Confirm Password is required")
       .oneOf([Yup.ref("password")], "Passwords must match"),
+    storename: Yup.string().min(3, "Store name must be at least 3 characters"),
+    bank_account: Yup.string().matches(
+      /^(?:((?:IT|SM)\d{2}[A-Z]{1}\d{22})|(NL\d{2}[A-Z]{4}\d{10})|(LV\d{2}[A-Z]{4}\d{13})|((?:BG|GB|IE)\d{2}[A-Z]{4}\d{14})|(GI\d{2}[A-Z]{4}\d{15})|(RO\d{2}[A-Z]{4}\d{16})|(MT\d{2}[A-Z]{4}\d{23})|(NO\d{13})|((?:DK|FI)\d{16})|((?:SI)\d{17})|((?:AT|EE|LU|LT)\d{18})|((?:HR|LI|CH)\d{19})|((?:DE|VA)\d{20})|((?:AD|CZ|ES|MD|SK|SE)\d{22})|(PT\d{23})|((?:IS)\d{24})|((?:BE)\d{14})|((?:FR|MC|GR)\d{25})|((?:PL|HU|CY)\d{26}))$/,
+      "You must be enter valid IBAN number"
+    ),
+    tax_no: Yup.string().matches(/^T\d{4}V\d{6}$/, "Tax no is not valid"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
   const [registerMode, setRegisterMode] = React.useState("1");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
@@ -34,7 +43,6 @@ export default function App() {
 
   const instance = axios.create({
     baseURL: "https://workintech-fe-ecommerce.onrender.com",
-    timeout: 1000,
   });
   const onSubmit = (data) => {
     console.log("form submit", data);
@@ -55,13 +63,20 @@ export default function App() {
     }
     console.log("post data=>", postData);
     instance
+      // .try(setIsSubmitting(true))
       .post("/signup", postData)
       .then((response) => {
         console.log("Signup successful=>", response.postData);
+        history.push("/previous-page", {
+          message:
+            "You need to click the link in the email to activate your account!",
+        });
       })
+
       .catch((error) => {
         console.error("Signup failed=>", error);
-      });
+      })
+      .finally(setIsSubmitting(false));
   };
 
   return (
@@ -81,10 +96,10 @@ export default function App() {
             <option value="3">admin</option>
           </select>
         </div>
-        <div className=" flex- flex-col gap-3">
+        <div className=" flex- flex-col mt-3">
           <label>Name</label>
+          <br />
           <div>
-            <br />
             <input
               className="border-2 border-colors-lacivert rounded-md py-1 px-5"
               type="text"
@@ -150,26 +165,32 @@ export default function App() {
                   name="name"
                   {...register("storename")}
                 />
+                <p className="text-colors-red"> {errors.storename?.message}</p>
               </div>
               <div className=" gap-3">
                 <label>Store Tax ID </label>
                 <br />
                 <input
                   className=" border-2 border-colors-lacivert rounded-md py-1 px-5 gap-3"
-                  type="number"
+                  type="text"
                   name="tax_no"
                   {...register("tax_no")}
                 />
+                <p className="text-colors-red"> {errors.tax_no?.message}</p>
               </div>
               <div className=" gap-3">
                 <label>Store Bank Account</label>
                 <br />
                 <input
                   className=" border-2 border-colors-lacivert rounded-md py-1 px-5 gap-3"
-                  type="number"
+                  type="text"
                   name="bank_account"
                   {...register("bank_account")}
                 />
+                <p className="text-colors-red">
+                  {" "}
+                  {errors.bank_account?.message}
+                </p>
               </div>
             </div>
           )}
@@ -179,8 +200,10 @@ export default function App() {
           <button
             className=" bg-colors-lacivert px-5 py-2 text-colors-white rounded-md mt-4 mb-4"
             type="submit"
+            disabled={isSubmitting}
           >
-            Login
+            {" "}
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
         </div>
       </form>
