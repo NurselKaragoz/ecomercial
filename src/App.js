@@ -16,6 +16,7 @@ import ProductListPage from "./companents/ProductListPage";
 import ContactPage from "./companents/ContactPage";
 import AboutPage from "./companents/AboutPage";
 import TeamPage from "./companents/TeamPage";
+import SingUpPage from "./companents/SingUpPage";
 import LoginPage from "./companents/LoginPage";
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
         <Route path="/productlist" component={ProductListPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/team" component={TeamPage} />
-        <Route path="/signup" component={LoginPage} />
+        <Route path="/signup" component={SingUpPage} />
+        <Route path="/login" component={LoginPage} />
 
         <Route path="/" component={Home} />
       </Switch>
