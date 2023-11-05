@@ -4,8 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axiosInstance from "../Axios/axiosInstance";
 export default function App() {
   const history = useHistory();
 
@@ -43,9 +44,9 @@ export default function App() {
     formState: { errors },
   } = useForm(formOptions);
 
-  const instance = axios.create({
-    baseURL: "https://workintech-fe-ecommerce.onrender.com",
-  });
+  // const instance = axios.create({
+  //   baseURL: "https://workintech-fe-ecommerce.onrender.com",
+  // });
   const onSubmit = (data) => {
     console.log("form submit", data);
 
@@ -64,8 +65,8 @@ export default function App() {
       };
     }
     console.log("post data=>", postData);
-    instance
-
+    axiosInstance
+      // .try(setIsSubmitting(true))
       .post("/signup", postData)
       .then((response) => {
         console.log("Signup successful=>", response.postData);
