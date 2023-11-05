@@ -20,6 +20,6 @@ const reducer = combineReducers({
 
 const middleware = [thunk, logger];
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;

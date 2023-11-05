@@ -1,28 +1,18 @@
-import { SET_USER, UPDATE_USER, CLEAR_USER } from "../Actions/userActions";
+import { userConst } from "../Actions/userActions.js";
+
 const initialState = {
   user: null,
 };
 
 const userReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_USER:
-      return {
-        ...state,
-        user: action.userData,
-      };
-    case UPDATE_USER:
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          ...action.updatedUserData,
-        },
-      };
-    case CLEAR_USER:
-      return {
-        ...state,
-        user: null,
-      };
+  const { type, payload } = action;
+
+  switch (type) {
+    case userConst.SET_USER_DATA:
+      return payload;
+
+    case userConst.CLEAR_USER_DATA:
+      return initialState;
     default:
       return state;
   }

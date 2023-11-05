@@ -1,13 +1,22 @@
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector, useEffect } from "react-redux";
+import { userAction } from "../Store/Actions/userActions";
+
 function LoginForm() {
+  const history = useHistory();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const user = useSelector((store) => store.user);
+
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(userAction.fetchLoginUser(data, history));
   };
 
   return (
@@ -19,7 +28,7 @@ function LoginForm() {
         <input
           className=" border-2 border-colors-lacivert rounded-md py-1 px-5"
           type="text"
-          {...register("email", { required: true })}
+          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         />
         {errors.email && (
           <p className=" text-colors-red">This field is required.</p>
