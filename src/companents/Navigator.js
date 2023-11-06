@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 function Navigator() {
   const user = useSelector((store) => store.user);
 
-  const showMessage = user.name && toast.success("Welcome");
+  // const showMessage = user.name && toast.success("Welcome");
 
   return (
     <div className=" text-colors-white p-4">

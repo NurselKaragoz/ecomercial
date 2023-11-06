@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import axiosInstance from "../../Axios/axiosInstance";
 
 // ActionTypes
@@ -23,8 +24,10 @@ const fetchLoginUser = (loginData, history) => {
         dispatch(userAction.setUserData(res.data)); //gelen veriyi dispatch et
         history.push("/home");
         localStorage.setItem("token", res.data.token);
+        toast.success(" Welcome");
       })
       .catch((err) => {
+        toast.error("Password is not correct");
         console.log("login result err: ", err);
         // dispatch(
         //   userAction.setUserData({
