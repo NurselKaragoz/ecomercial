@@ -5,8 +5,19 @@ import { LiaShoppingCartSolid } from "react-icons/lia";
 import { AiOutlineHeart } from "react-icons/ai";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import md5 from "md5";
+import Avatar from "@mui/material/Avatar";
+import avatarImg from "./images/userphoto.jpg";
 
 function Navigator() {
+  const user = useSelector((store) => store.user);
+
+  // const getGravatarUrl = (email) => {
+  //   // const md5 = "cd7abc10293c1e90e404b0ddef01756f";
+  //   const hash = md5(email.trim().toLowerCase());
+  //   return `https://www.gravatar.com/avatar/${hash}?s=25`;
+  // };
   return (
     <div className=" text-colors-white p-4">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
@@ -35,6 +46,13 @@ function Navigator() {
         </div>
         <div className="text-colors-blue flex items-center space-x-2">
           <IoPersonOutline />
+          <div className="user-info text-colors-lacivert flex pl-2 pr-2 flex-row justify-center text-center">
+            <p className=" pt-3">{user.name}</p>
+            <div className=" text-center">
+              {" "}
+              {user.name && <Avatar src={avatarImg} />}
+            </div>
+          </div>
           <Link className=" no-underline" to="/login">
             <span className="hidden md:inline">Login / </span>
           </Link>
