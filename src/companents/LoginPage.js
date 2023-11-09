@@ -1,8 +1,10 @@
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector, useEffect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "../Store/Actions/userActions";
 
+import { axiosWithAuth } from "./axiosWithAuth.js";
+import axiosInstance from "../Axios/axiosInstance.js";
 function LoginForm() {
   const history = useHistory();
 
@@ -18,6 +20,11 @@ function LoginForm() {
   const onSubmit = (data) => {
     dispatch(userAction.fetchLoginUser(data, history));
   };
+
+  // axiosWithAuth()
+  //   .get("verify")
+  //   .then((data) => console.log("get data =>", data))
+  //   .catch((err) => console.log("error get token", err));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

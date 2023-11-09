@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import axiosInstance from "../../Axios/axiosInstance";
+import { axiosWithAuth } from "../../companents/axiosWithAuth";
 
 // ActionTypes
 const SET_USER_DATA = "SET_USER_DATA";
@@ -21,9 +22,10 @@ const fetchLoginUser = (loginData, history) => {
       .post("/login", loginData)
       .then((res) => {
         console.log("login result success: ", res);
-        dispatch(userAction.setUserData(res.data)); //gelen veriyi dispatch et
+        dispatch(setUserData(res.data)); //gelen veriyi dispatch et
         history.push("/home");
         localStorage.setItem("token", res.data.token);
+        console.log("token", res.data.token);
         toast.success(" Welcome");
       })
       .catch((err) => {
@@ -40,8 +42,21 @@ const fetchLoginUser = (loginData, history) => {
   };
 };
 
+const autoLogin = () => (dispatch) => {
+  axiosWithAuth()
+    .get("/verify")
+    .then(function (response) {
+      dispatch(setUserData(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+      localStorage.setItem("token", "");
+    });
+};
+
 export const userAction = {
   setUserData,
   clearUserData,
   fetchLoginUser,
+  autoLogin,
 };
