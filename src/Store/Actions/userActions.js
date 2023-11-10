@@ -22,7 +22,7 @@ const fetchLoginUser = (loginData, history) => {
       .post("/login", loginData)
       .then((res) => {
         console.log("login result success: ", res);
-        dispatch(setUserData(res.data)); //gelen veriyi dispatch et
+        dispatch(userAction.setUserData(res.data)); //gelen veriyi dispatch et
         history.push("/home");
         localStorage.setItem("token", res.data.token);
         console.log("token", res.data.token);

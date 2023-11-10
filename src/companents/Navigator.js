@@ -48,7 +48,13 @@ function Navigator() {
           <div className="user-info text-colors-lacivert flex pl-2 pr-2 flex-row justify-center text-center">
             <p className=" pt-3">{user.name}</p>
             <div className=" text-center">
-              {user.name && <Avatar src={avatarImg} />}
+              {user.name && (
+                <Avatar
+                  src={`https://www.gravatar.com/avatar/${md5(
+                    user.email
+                  )}?s=24`}
+                />
+              )}
               {/* {showMessage} */}
             </div>
           </div>
