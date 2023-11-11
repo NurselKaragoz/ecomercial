@@ -42,21 +42,44 @@ const fetchLoginUser = (loginData, history) => {
   };
 };
 
-const autoLogin = () => (dispatch) => {
+const fetchAutoLogin = () => (dispatch) => {
   axiosWithAuth()
     .get("/verify")
     .then(function (response) {
-      dispatch(setUserData(response.data));
+      dispatch(userAction.setUserData(response.data));
     })
     .catch(function (error) {
       console.log(error);
       localStorage.setItem("token", "");
     });
 };
-
+const fetchRoles = () => (dispatch) => {
+  axiosWithAuth()
+    .get("/roles")
+    .then(function (response) {
+      dispatch(userAction.fetchRoles(response.data));
+      console.log("roles", response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+const fetchCategories = () => (dispatch) => {
+  axiosInstance
+    .get("/categories")
+    .then(function (response) {
+      dispatch(userAction.fetchCategories(response.data));
+      console.log("categories=>", response);
+    })
+    .catch(function (error) {
+      console.log("categores error =>", error);
+    });
+};
 export const userAction = {
   setUserData,
   clearUserData,
   fetchLoginUser,
-  autoLogin,
+  fetchAutoLogin,
+  fetchRoles,
+  fetchCategories,
 };

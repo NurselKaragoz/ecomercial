@@ -20,7 +20,7 @@ export const getRolesIfNeeded = () => (dispatch, getState) => {
 
   dispatch(fetchRolesRequest());
 
-  fetch("/api/roles")
+  fetch("/roles")
     .then((response) => response.json())
     .then((data) => {
       dispatch(fetchRolesSuccess(data));
