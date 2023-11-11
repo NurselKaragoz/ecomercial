@@ -7,8 +7,11 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "../Axios/axiosInstance";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 export default function App() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required(),
@@ -34,8 +37,11 @@ export default function App() {
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
-  const [registerMode, setRegisterMode] = React.useState("1");
+  const [registerMode, setRegisterMode] = React.useState("3");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const roles = useSelector((store) => store.user.role_id);
+  const [availableRoles, setAvailableRoles] = useState([]);
+  console.log("roles=>", roles);
   // const [navigateToPage, setNavigateToPage] = useState();
 
   const {
@@ -82,7 +88,12 @@ export default function App() {
       })
       .finally(setIsSubmitting(false));
   };
-
+  useEffect(() => {
+    // Fetch roles when the component mounts
+    axiosInstance.get("/roles").then((response) => {
+      setAvailableRoles(response.data);
+    });
+  }, []);
   return (
     <div className="gap-5 flex flex-col">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -93,11 +104,14 @@ export default function App() {
             className=" border-2 border-colors-lacivert rounded-md py-1 px-5"
             value={registerMode}
             {...register("role_id")}
-            onChange={(e) => setRegisterMode(e.target.value)}
+            onChange={(e) => {
+              setRegisterMode(e.target.value);
+              setAvailableRoles("role_id", e.target.value); // Set the value for 'role_id' in the form data
+            }}
           >
-            <option value="1">customer</option>
+            <option value="3">customer</option>
             <option value="2">store</option>
-            <option value="3">admin</option>
+            <option value="1">admin</option>
           </select>
         </div>
         <div className=" flex- flex-col mt-3">

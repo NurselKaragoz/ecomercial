@@ -24,18 +24,19 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      dispatch(userAction.autoLogin());
+      dispatch(userAction.fetchAutoLogin());
     }
   }, []);
+
   return (
     <div className="App">
       <Header />
       <Navigator />
 
       <Switch>
-        <Route path="/products" component={ProductPage} />
+        <Route path="/shoplist" component={ProductPage} />
         <Route path="/contact" component={ContactPage} />
-        <Route path="/productlist" component={ProductListPage} />
+        <Route path="/shop" component={ProductListPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/team" component={TeamPage} />
         <Route path="/signup" component={SingUpPage} />

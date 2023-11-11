@@ -8,14 +8,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import md5 from "md5";
 import Avatar from "@mui/material/Avatar";
-import avatarImg from "./images/userphoto.jpg";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 
 function Navigator() {
   const user = useSelector((store) => store.user);
-
-  // const showMessage = user.name && toast.success("Welcome");
 
   return (
     <div className=" text-colors-white p-4">
@@ -29,7 +25,7 @@ function Navigator() {
           <Link className="text-colors-gray no-underline" to="/">
             <li>Home</li>
           </Link>
-          <Link className="text-colors-gray no-underline" to="/products">
+          <Link className="text-colors-gray no-underline" to="/shop">
             <li>Shop</li>
           </Link>
           <RiArrowDropDownLine />

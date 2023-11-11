@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "../Store/Actions/userActions";
 
-import { axiosWithAuth } from "./axiosWithAuth.js";
-import axiosInstance from "../Axios/axiosInstance.js";
 function LoginForm() {
   const history = useHistory();
 

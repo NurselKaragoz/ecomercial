@@ -3,9 +3,13 @@ import ShopListCard from "./ShopListCard";
 import Clients from "./Clients";
 import { HiViewGrid } from "react-icons/hi";
 import { BsListCheck } from "react-icons/bs";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { userAction } from "../Store/Actions/userActions";
 
 function ProductListPage() {
   const shopList = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
+  const dispatch = useDispatch();
 
   const productList = [
     { id: 1 },
@@ -21,7 +25,9 @@ function ProductListPage() {
     { id: 11 },
     { id: 12 },
   ];
-
+  // useEffect(() => {
+  //   dispatch(userAction.fetchCategories());
+  // }, [dispatch]);
   return (
     <div className="p-4 md:p-10">
       <h2 className="text-colors-lacivert md:text-left bg-colors-gray100 pt-5 mb-0">
