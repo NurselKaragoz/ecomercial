@@ -15,7 +15,6 @@ import TeamPage from "./companents/TeamPage";
 import SingUpPage from "./companents/SingUpPage";
 import LoginPage from "./companents/LoginPage";
 import { useEffect } from "react";
-import { axiosWithAuth } from "./companents/axiosWithAuth";
 import { userAction } from "./Store/Actions/userActions";
 import { useDispatch } from "react-redux";
 function App() {

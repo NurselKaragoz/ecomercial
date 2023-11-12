@@ -19,11 +19,6 @@ function LoginForm() {
     dispatch(userAction.fetchLoginUser(data, history));
   };
 
-  // axiosWithAuth()
-  //   .get("verify")
-  //   .then((data) => console.log("get data =>", data))
-  //   .catch((err) => console.log("error get token", err));
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>

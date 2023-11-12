@@ -57,29 +57,18 @@ const fetchRoles = () => (dispatch) => {
   axiosWithAuth()
     .get("/roles")
     .then(function (response) {
-      dispatch(userAction.fetchRoles(response.data));
+      dispatch(userAction.setRoles(response.data));
       console.log("roles", response);
     })
     .catch(function (error) {
       console.log(error);
     });
 };
-const fetchCategories = () => (dispatch) => {
-  axiosInstance
-    .get("/categories")
-    .then(function (response) {
-      dispatch(userAction.fetchCategories(response.data));
-      console.log("categories=>", response);
-    })
-    .catch(function (error) {
-      console.log("categores error =>", error);
-    });
-};
+
 export const userAction = {
   setUserData,
   clearUserData,
   fetchLoginUser,
   fetchAutoLogin,
   fetchRoles,
-  fetchCategories,
 };

@@ -1,7 +1,8 @@
+import axiosInstance from "../../Axios/axiosInstance";
 export const SET_ROLES = "SET_ROLES";
 export const SET_THEME = "SET_THEME";
 export const SET_LANGUAGE = "SET_LANGUAGE";
-export const SET_CATEGORİES = "SET_CATEGORİES";
+export const SET_CATEGORIES = "SET_CATEGORIES";
 
 export const setRoles = (roles) => {
   return {
@@ -23,9 +24,22 @@ export const setLanguage = (language) => {
     payload: language,
   };
 };
-export const setCategories = (Categories) => {
+
+export const setCategories = (data) => {
   return {
-    type: SET_CATEGORİES,
-    payload: Categories,
+    type: SET_CATEGORIES,
+    payload: data,
   };
+};
+
+export const fetchCategories = () => (dispatch) => {
+  axiosInstance
+    .get("/categories")
+    .then(function (response) {
+      console.log("categories=>", response.data);
+      dispatch(setCategories(response.data));
+    })
+    .catch(function (error) {
+      console.log("categores error =>", error);
+    });
 };
