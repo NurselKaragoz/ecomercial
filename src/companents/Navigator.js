@@ -9,9 +9,20 @@ import { useSelector } from "react-redux";
 import md5 from "md5";
 import Avatar from "@mui/material/Avatar";
 import "react-toastify/dist/ReactToastify.css";
+import { Dropdown } from "flowbite-react";
 
 function Navigator() {
   const user = useSelector((store) => store.user);
+  const categories = useSelector((state) => state.global?.categories);
+  let womanItem = [];
+  let manItem = [];
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].gender === "k") {
+      womanItem.push(categories[i]);
+    } else {
+      manItem.push(categories[i]);
+    }
+  }
 
   return (
     <div className=" text-colors-white p-4">
@@ -25,10 +36,40 @@ function Navigator() {
           <Link className="text-colors-gray no-underline" to="/">
             <li>Home</li>
           </Link>
-          <Link className="text-colors-gray no-underline" to="/shop">
+          <Link
+            className="text-colors-gray no-underline flex flex-row"
+            to="/shop"
+          >
             <li>Shop</li>
+            <div></div>
+            <Dropdown inline className=" flex flex-row">
+              Kadın
+              {womanItem.map((item) => (
+                <Dropdown.Item className=" flex " key={item.id}>
+                  Kadın&nbsp;
+                  <Link
+                    className=" no-underline text-colors-gray"
+                    to={`/category/${item.id}`}
+                  >
+                    {item.title}
+                  </Link>
+                </Dropdown.Item>
+              ))}
+              Erkek
+              {manItem.map((item) => (
+                <Dropdown.Item key={item.id} className=" flex">
+                  Erkek&nbsp;
+                  <Link
+                    className=" no-underline text-colors-gray"
+                    to={`/category/${item.id}`}
+                  >
+                    {item.title}
+                  </Link>
+                </Dropdown.Item>
+              ))}
+            </Dropdown>
           </Link>
-          <RiArrowDropDownLine />
+
           <Link className="text-colors-gray no-underline" to="/about">
             <li>About</li>
           </Link>
