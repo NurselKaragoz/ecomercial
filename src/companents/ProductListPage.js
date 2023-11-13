@@ -32,13 +32,19 @@ function ProductListPage() {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  let rateArray = categories;
+  const sortedCategories = rateArray.sort((a, b) => b.rating - a.rating);
+  const top5Categories = sortedCategories.slice(0, 5);
+
+  console.log("Indices of the largest five elements:", top5Categories);
+
   return (
     <div className="p-4 md:p-10">
       <h2 className="text-colors-lacivert md:text-left bg-colors-gray100 pt-5 mb-0">
         Shop
       </h2>
       <div className="flex flex-col  flex-wrap gap-6  md:gap-15 md:flex-row md:justify-center items-center bg-colors-gray100 mx-auto pt-6 ">
-        {categories.map((category) => (
+        {top5Categories.map((category) => (
           <ShopListCard key={category.id} category={category} />
         ))}
       </div>
