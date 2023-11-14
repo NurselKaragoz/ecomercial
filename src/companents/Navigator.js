@@ -46,11 +46,11 @@ function Navigator() {
               Kadın
               {womanItem.map((item) => (
                 <Dropdown.Item className=" flex " key={item.id}>
-                  Kadın&nbsp;
                   <Link
                     className=" no-underline text-colors-gray"
-                    to={`/category/${item.id}`}
+                    to={`/shopping/kadın/${item.title}`}
                   >
+                    Kadın&nbsp;
                     {item.title}
                   </Link>
                 </Dropdown.Item>
@@ -58,11 +58,11 @@ function Navigator() {
               Erkek
               {manItem.map((item) => (
                 <Dropdown.Item key={item.id} className=" flex">
-                  Erkek&nbsp;
                   <Link
                     className=" no-underline text-colors-gray"
-                    to={`/category/${item.id}`}
+                    to={`/shopping/erkek/${item.title}`}
                   >
+                    Erkek&nbsp;
                     {item.title}
                   </Link>
                 </Dropdown.Item>

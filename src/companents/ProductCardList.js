@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 export default function ProductCardList() {
   return (
-    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-      <Link to="/shoplist">
+    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
+      <Link className=" no-underline" to="/shoplist">
         <div className="card bg-colors-gray">
           <img src={productcover1} alt="Product Cover" className="w-full" />
           <div className="flex flex-col items-center gap-2 py-4">
