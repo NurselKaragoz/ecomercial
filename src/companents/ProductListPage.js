@@ -47,11 +47,11 @@ function ProductListPage() {
       <div className="flex flex-col  flex-wrap gap-6  md:gap-15 md:flex-row md:justify-center items-center bg-colors-gray100 mx-auto pt-6 ">
         {top5Categories.map((category) => (
           <Link
-            to={`/shopping/${category.gender == "e" ? "erkek" : "kadın"}/${
-              category.title
-            }`}
+            to={`/shopping/${
+              category.gender == "e" ? "erkek" : "kadın"
+            }/${String(category.title).toLowerCase()}`}
           >
-            <ShopListCard key={category.id} category={category} />{" "}
+            <ShopListCard key={category.id} category={category} />
           </Link>
         ))}
       </div>

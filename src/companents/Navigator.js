@@ -48,7 +48,9 @@ function Navigator() {
                 <Dropdown.Item className=" flex " key={item.id}>
                   <Link
                     className=" no-underline text-colors-gray"
-                    to={`/shopping/kadın/${item.title}`}
+                    to={`/shopping/kadın/${String(
+                      item.title
+                    ).toLocaleLowerCase()}`}
                   >
                     Kadın&nbsp;
                     {item.title}
@@ -60,7 +62,7 @@ function Navigator() {
                 <Dropdown.Item key={item.id} className=" flex">
                   <Link
                     className=" no-underline text-colors-gray"
-                    to={`/shopping/erkek/${item.title}`}
+                    to={`/shopping/erkek/${String(item.title.toLowerCase)}`}
                   >
                     Erkek&nbsp;
                     {item.title}

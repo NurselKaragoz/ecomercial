@@ -1,4 +1,3 @@
-import shoplistimg from "./images/shoplist1.jpg";
 function ShopListCard({ category }) {
   return (
     <div>
