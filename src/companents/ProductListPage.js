@@ -6,6 +6,7 @@ import { BsListCheck } from "react-icons/bs";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../Store/Actions/GlobalActions";
+import { Link } from "react-router-dom";
 
 function ProductListPage() {
   const categories = useSelector((state) => state.global?.categories);
@@ -45,7 +46,13 @@ function ProductListPage() {
       </h2>
       <div className="flex flex-col  flex-wrap gap-6  md:gap-15 md:flex-row md:justify-center items-center bg-colors-gray100 mx-auto pt-6 ">
         {top5Categories.map((category) => (
-          <ShopListCard key={category.id} category={category} />
+          <Link
+            to={`/shopping/${category.gender == "e" ? "erkek" : "kadın"}/${
+              category.title
+            }`}
+          >
+            <ShopListCard key={category.id} category={category} />{" "}
+          </Link>
         ))}
       </div>
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center pt-4">
