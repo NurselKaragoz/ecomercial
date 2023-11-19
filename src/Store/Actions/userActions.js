@@ -53,22 +53,10 @@ const fetchAutoLogin = () => (dispatch) => {
       localStorage.setItem("token", "");
     });
 };
-const fetchRoles = () => (dispatch) => {
-  axiosWithAuth()
-    .get("/roles")
-    .then(function (response) {
-      dispatch(userAction.setRoles(response.data));
-      console.log("roles", response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
 
 export const userAction = {
   setUserData,
   clearUserData,
   fetchLoginUser,
   fetchAutoLogin,
-  fetchRoles,
 };

@@ -17,6 +17,7 @@ import LoginPage from "./companents/LoginPage";
 import { useEffect } from "react";
 import { userAction } from "./Store/Actions/userActions";
 import { useDispatch } from "react-redux";
+import { fetchRoles } from "./Store/Actions/GlobalActions";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -24,6 +25,12 @@ function App() {
   useEffect(() => {
     if (token) {
       dispatch(userAction.fetchAutoLogin());
+    }
+  }, []);
+
+  useEffect(() => {
+    {
+      dispatch(fetchRoles());
     }
   }, []);
 
@@ -35,7 +42,7 @@ function App() {
       <Switch>
         <Route path="/shoplist" component={ProductPage} />
         <Route path="/contact" component={ContactPage} />
-        <Route path="/shop" component={ProductListPage} />
+        <Route path="/shopping" component={ProductListPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/team" component={TeamPage} />
         <Route path="/signup" component={SingUpPage} />
