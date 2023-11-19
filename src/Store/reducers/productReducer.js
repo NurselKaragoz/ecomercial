@@ -4,6 +4,7 @@ import {
   SET_PAGE_COUNT,
   SET_ACTIVE_PAGE,
   SET_FETCH_STATE,
+  SET_PRODUCT,
 } from "../Actions/productActions";
 const initialState = {
   productList: [],
@@ -39,6 +40,11 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchState: action.fetchState,
+      };
+    case SET_PRODUCT:
+      return {
+        ...state,
+        product: action.product,
       };
     default:
       return state;

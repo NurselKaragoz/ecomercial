@@ -1,4 +1,5 @@
 import axiosInstance from "../../Axios/axiosInstance";
+import { axiosWithAuth } from "../../companents/axiosWithAuth";
 export const SET_ROLES = "SET_ROLES";
 export const SET_THEME = "SET_THEME";
 export const SET_LANGUAGE = "SET_LANGUAGE";
@@ -41,5 +42,16 @@ export const fetchCategories = () => (dispatch) => {
     })
     .catch(function (error) {
       console.log("categores error =>", error);
+    });
+};
+export const fetchRoles = () => (dispatch) => {
+  axiosWithAuth()
+    .get("/roles")
+    .then(function (response) {
+      dispatch(setRoles(response.data));
+      console.log("roles", response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
     });
 };

@@ -12,9 +12,6 @@ function Shop() {
         <h5>Shop</h5>
       </div>
       <div className=" flex md:flex-row justify-center gap-10 md:justify-center flex-col items-center ">
-        {/* <div className="">
-          <img src={couch} />
-        </div> */}
         <CarouselDefault />
 
         <div className=" text-colors-gray flex flex-col  max-w-lg text-left gap-2">

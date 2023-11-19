@@ -7,9 +7,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../Store/Actions/GlobalActions";
 import { Link } from "react-router-dom";
+import { fetchProduct } from "../Store/Actions/productActions";
 
 function ProductListPage() {
   const categories = useSelector((state) => state.global?.categories);
+
+  const product = useSelector((state) => state.product?.product);
 
   const shopList = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
 
@@ -32,6 +35,11 @@ function ProductListPage() {
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+  useEffect(() => {
+    {
+      dispatch(fetchProduct());
+    }
+  }, []);
 
   let rateArray = categories;
   const sortedCategories = rateArray.sort((a, b) => b.rating - a.rating);

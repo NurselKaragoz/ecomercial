@@ -41,7 +41,7 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const roles = useSelector((store) => store.user.role_id);
   const [availableRoles, setAvailableRoles] = useState([]);
-  console.log("roles=>", roles);
+
   // const [navigateToPage, setNavigateToPage] = useState();
 
   const {
@@ -88,12 +88,7 @@ export default function App() {
       })
       .finally(setIsSubmitting(false));
   };
-  useEffect(() => {
-    // Fetch roles when the component mounts
-    axiosInstance.get("/roles").then((response) => {
-      setAvailableRoles(response.data);
-    });
-  }, []);
+
   return (
     <div className="gap-5 flex flex-col">
       <form onSubmit={handleSubmit(onSubmit)}>
