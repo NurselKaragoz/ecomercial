@@ -11,10 +11,13 @@ import { fetchProduct } from "../Store/Actions/productActions";
 
 function ProductListPage() {
   const categories = useSelector((state) => state.global?.categories);
+  console.log("cattt;", categories);
 
-  const product = useSelector((state) => state.product?.product);
+  const { products } = useSelector((s) => s.product.product);
 
-  const shopList = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
+  console.log("State:", products);
+
+  // const shopList = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
 
   const productList = [
     { id: 1 },
@@ -35,6 +38,7 @@ function ProductListPage() {
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+
   useEffect(() => {
     {
       dispatch(fetchProduct());
@@ -65,7 +69,7 @@ function ProductListPage() {
       </div>
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center pt-4">
         <div className="text-colors-gray md:text-left">
-          <h6>Showing all 12 results</h6>
+          <h6>Showing all 12 results </h6>
         </div>
         <div className="flex flex-row items-center gap-2">
           <h6 className="text-colors-gray">Views:</h6>
@@ -79,9 +83,13 @@ function ProductListPage() {
         <button className="btn-blue md:mt-0">Filter</button>
       </div>
       <div className="flex flex-col md:flex-row flex-wrap gap-6 md:gap-20 justify-center items-center pt-10">
-        {productList.map((product) => (
-          <ProductCardList key={product.id} />
-        ))}
+        {products ? (
+          products.map((product) => (
+            <ProductCardList key={product.id} product={product} />
+          ))
+        ) : (
+          <div>Yükleniyor...</div>
+        )}
       </div>
       <Clients />
     </div>

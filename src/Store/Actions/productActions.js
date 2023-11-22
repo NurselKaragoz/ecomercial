@@ -8,37 +8,35 @@ export const SET_PRODUCT = "SET_PRODUCT";
 
 export const setTotalProductCount = (totalProductCount) => ({
   type: SET_TOTAL_PRODUCT_COUNT,
-  totalProductCount,
+  payload: totalProductCount,
 });
-export const setProduct = (product) => {
-  return {
-    type: SET_PRODUCT,
-    payload: product,
-  };
-};
+export const setProduct = (product) => ({
+  type: SET_PRODUCT,
+  payload: product,
+});
 
 export const setPageCount = (pageCount) => ({
   type: SET_PAGE_COUNT,
-  pageCount,
+  payload: pageCount,
 });
 export const setActivePage = (activePage) => ({
   type: SET_ACTIVE_PAGE,
-  activePage,
+  payload: activePage,
 });
 export const setFetchState = (fetchState) => ({
   type: SET_FETCH_STATE,
-  fetchState,
+  payload: fetchState,
 });
 const setProductList = (productList) => ({
   type: SET_PRODUCT_LIST,
-  productList,
+  payload: productList,
 });
 export const fetchProduct = () => (dispatch) => {
   axiosInstance
     .get("/products")
 
     .then(function (response) {
-      console.log("product data =>", response);
+      console.log("product data =>", response.data);
 
       dispatch(setProduct(response.data));
     })

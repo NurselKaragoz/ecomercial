@@ -1,12 +1,13 @@
 import {
+  SET_PRODUCT,
   SET_PRODUCT_LIST,
   SET_TOTAL_PRODUCT_COUNT,
   SET_PAGE_COUNT,
   SET_ACTIVE_PAGE,
   SET_FETCH_STATE,
-  SET_PRODUCT,
 } from "../Actions/productActions";
 const initialState = {
+  product: [],
   productList: [],
   totalProductCount: 0,
   pageCount: 0,
@@ -16,6 +17,8 @@ const initialState = {
 
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_PRODUCT:
+      return { ...state, product: action.payload };
     case SET_PRODUCT_LIST:
       return {
         ...state,
@@ -41,11 +44,7 @@ const productReducer = (state = initialState, action) => {
         ...state,
         fetchState: action.fetchState,
       };
-    case SET_PRODUCT:
-      return {
-        ...state,
-        product: action.product,
-      };
+
     default:
       return state;
   }
