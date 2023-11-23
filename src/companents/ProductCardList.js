@@ -1,8 +1,6 @@
 import React from "react";
-import productcover1 from "./images/product-cover.png";
 import { BsCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 export default function ProductCardList({ product }) {
   return (
