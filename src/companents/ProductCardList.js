@@ -13,8 +13,8 @@ export default function ProductCardList({ product }) {
             className="w-full"
           />
           <div className="flex flex-col items-center gap-2 py-4">
-            <h5 className="font-bold text-xl">Graphic Design</h5>
-            <p className="text-colors-gray">English Department</p>
+            <h5 className="font-bold text-xl">{product.name}</h5>
+            <p className="text-colors-gray">{product.description}</p>
             <div className="flex flex-row items-center gap-3">
               <h5 className="text-colors-gray">${product.price}</h5>
               <h5 className="text-colors-green font-bold">$6.48</h5>
