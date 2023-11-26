@@ -42,17 +42,12 @@ export default function App() {
   const roles = useSelector((store) => store.user.role_id);
   const [availableRoles, setAvailableRoles] = useState([]);
 
-  // const [navigateToPage, setNavigateToPage] = useState();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm(formOptions);
 
-  // const instance = axios.create({
-  //   baseURL: "https://workintech-fe-ecommerce.onrender.com",
-  // });
   const onSubmit = (data) => {
     console.log("form submit", data);
 
