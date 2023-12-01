@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../Store/Actions/GlobalActions";
 import { Link } from "react-router-dom";
 import { fetchProduct } from "../Store/Actions/productActions";
+import { useForm } from "react-hook-form";
 
 function ProductListPage() {
   const categories = useSelector((state) => state.global?.categories);
@@ -35,6 +36,16 @@ function ProductListPage() {
   const top5Categories = sortedCategories.slice(0, 5);
 
   console.log("Indices of the largest five elements:", top5Categories);
+
+  const { register, handleSubmit } = useForm({});
+  const onSubmit = async (data) => {
+    try {
+      // Assuming you want to dispatch the fetched products
+      dispatch(fetchProduct(data.filter, data.category, data.sort));
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
   return (
     <div className="p-4 md:p-10">
@@ -65,41 +76,30 @@ function ProductListPage() {
             <BsListCheck />
           </div>
         </div>
-
-        <div>
-          <select className="ui search dropdown border rounded-md px-2 py-2 border-colors-lacivert">
-            <option value="">Categories</option>
-            <option value="AL">Alabama</option>
-            <option value="AK">Alaska</option>
-            <option value="AZ">Arizona</option>
-            <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <select {...register("category", {})}>
+            <option value={1}>United States</option>
+            <option value={2}>Canada</option>
+            <option value={3}>France</option>
+            <option value={4}>Germany</option>
           </select>
-        </div>
-        <div>
-          <select className="border rounded-md px-2 py-2 border-colors-lacivert">
-            <option value="4">Önerilen Sıralama</option>
-            <option value="3">Fiyata Göre Azalan</option>
-            <option value="2">Fiyata Göre Artan </option>
-            <option value="1">Yüksek Puanlı Ürünler</option>
-          </select>
-        </div>
+          <select {...register("sort", {})}>
+            <option value={1}>Fiyata göre artan</option>
+            <option value={2}>Fiyata göre azalan</option>
 
-        <div className="flex justify-center items-center ">
-          <div className="mb-4 flex w-full flex-wrap items-stretch justify-center mt-4">
-            <input
-              type="search"
-              className=" flex-auto rounded border border-solid border-colors-lacivert bg-transparent bg-clip-padding px-2 py-2 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out  dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary items-center"
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="button-addon2"
-            />
-          </div>
-        </div>
-        <button class=" bg-colors-lacivert hover:bg-blue-500 text-colors-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-          Button
-        </button>
+            <option value={3}>Yüksek puanlı ürünler</option>
+          </select>
+          <input
+            {...register("filter", {})}
+            className=" flex-auto rounded border border-solid border-colors-lacivert bg-transparent bg-clip-padding px-2 py-2 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out  dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary items-center"
+            placeholder="seacrh"
+          />
+
+          <input
+            type="submit"
+            className=" bg-colors-lacivert hover:bg-blue-500 text-colors-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          />
+        </form>
       </div>
       <div className="flex flex-col md:flex-row flex-wrap gap-6 md:gap-20 justify-center items-center pt-10">
         {products ? (

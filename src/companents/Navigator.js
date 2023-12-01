@@ -41,10 +41,10 @@ function Navigator() {
             to="/shopping"
           >
             <li>Shop</li>
-            <div className=" flex flex-row">
+            <div className=" flex flex-row text-left">
               <Dropdown inline className="flex font-semibold">
                 {/* Left side for Kadın */}
-                <div className="flex flex-col">
+                <div className="flex flex-col text-left">
                   <span>Kadın</span>
                   {womanItem.map((item) => (
                     <Dropdown.Item key={item.id} className="flex flex-col">
@@ -59,8 +59,7 @@ function Navigator() {
                     </Dropdown.Item>
                   ))}
                 </div>
-
-                <div className="flex flex-col">
+                <div className="flex flex-col mt-0 ml-72">
                   <span>Erkek</span>
                   {manItem.map((item) => (
                     <Dropdown.Item key={item.id} className="flex flex-col">

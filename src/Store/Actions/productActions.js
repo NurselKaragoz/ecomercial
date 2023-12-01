@@ -31,9 +31,15 @@ const setProductList = (productList) => ({
   type: SET_PRODUCT_LIST,
   payload: productList,
 });
-export const fetchProduct = () => (dispatch) => {
+
+export const fetchProduct = (filter, category, sort) => (dispatch) => {
+  const queryParams = new URLSearchParams();
+  if (category) queryParams.append("category", category);
+  if (filter) queryParams.append("filter", filter);
+  if (sort) queryParams.append("sort", sort);
+
   axiosInstance
-    .get("/products")
+    .get(`/products?${queryParams.toString()}`)
 
     .then(function (response) {
       console.log("product data =>", response.data);
