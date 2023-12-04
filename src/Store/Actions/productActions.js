@@ -34,9 +34,13 @@ const setProductList = (productList) => ({
 
 export const fetchProduct = (filter, category, sort) => (dispatch) => {
   const queryParams = new URLSearchParams();
-  if (category) queryParams.append("category", category);
   if (filter) queryParams.append("filter", filter);
+  if (category) queryParams.append("category", category);
+
   if (sort) queryParams.append("sort", sort);
+
+  console.log("sort action :", sort);
+  console.log("category action :", category);
 
   axiosInstance
     .get(`/products?${queryParams.toString()}`)
@@ -49,4 +53,5 @@ export const fetchProduct = (filter, category, sort) => (dispatch) => {
     .catch(function (error) {
       console.log("product error", error);
     });
+  console.log("query param", queryParams);
 };
