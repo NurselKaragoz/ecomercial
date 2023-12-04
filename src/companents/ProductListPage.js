@@ -40,13 +40,21 @@ function ProductListPage() {
   const { register, handleSubmit } = useForm({});
   const onSubmit = async (data) => {
     try {
-      // Assuming you want to dispatch the fetched products
       dispatch(fetchProduct(data.filter, data.category, data.sort));
+      console.log("register:", data.sort);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
   };
-
+  let womanItem = [];
+  let manItem = [];
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].gender === "k") {
+      womanItem.push(categories[i]);
+    } else {
+      manItem.push(categories[i]);
+    }
+  }
   return (
     <div className="p-4 md:p-10">
       <h2 className="text-colors-lacivert md:text-left bg-colors-gray100 pt-5 mb-0">
@@ -65,7 +73,7 @@ function ProductListPage() {
       </div>
       <div className="flex flex-col md:flex-row md:justify-between justify-center items-center pt-4">
         <div className="text-colors-gray md:text-left">
-          <h6>Showing all 12 results </h6>
+          <h6>Showing all 25 results </h6>
         </div>
         <div className="flex flex-row items-center gap-2">
           <h6 className="text-colors-gray">Views:</h6>
@@ -78,16 +86,22 @@ function ProductListPage() {
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <select {...register("category", {})}>
-            <option value={1}>United States</option>
-            <option value={2}>Canada</option>
-            <option value={3}>France</option>
-            <option value={4}>Germany</option>
+            {womanItem.map((item) => (
+              <option key={item.id} value={item.id} className="flex flex-col">
+                Kadın&nbsp;{item.title}
+              </option>
+            ))}
+            {manItem.map((item) => (
+              <option key={item.id} value={item.id} className="flex flex-col">
+                Erkek&nbsp;{item.title}
+              </option>
+            ))}
           </select>
           <select {...register("sort", {})}>
-            <option value={1}>Fiyata göre artan</option>
-            <option value={2}>Fiyata göre azalan</option>
-
-            <option value={3}>Yüksek puanlı ürünler</option>
+            <option value={"price:asc"}>En düşük fiyat</option>
+            <option value={"price:desc"}>En yüksek fiyat</option>
+            <option value={"rating:asc"}>En düşük puan</option>
+            <option value={"rating:desc"}>En yüksek puan </option>
           </select>
           <input
             {...register("filter", {})}
