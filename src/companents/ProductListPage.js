@@ -38,9 +38,17 @@ function ProductListPage() {
   console.log("Indices of the largest five elements:", top5Categories);
 
   const { register, handleSubmit } = useForm({});
+
   const onSubmit = async (data) => {
     try {
       dispatch(fetchProduct(data.filter, data.category, data.sort));
+      const queryParams = new URLSearchParams({
+        sort: data.sort,
+        filter: data.filter,
+        category: data.category,
+      });
+      window.history.replaceState({}, "", `?${queryParams.toString()}`);
+
       console.log("register:", data.sort);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -84,15 +92,16 @@ function ProductListPage() {
             <BsListCheck />
           </div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+
+        <form onSubmit={handleSubmit(onSubmit)} className=" flex flex-row">
           <select {...register("category", {})}>
             {womanItem.map((item) => (
-              <option key={item.id} value={item.id} className="flex flex-col">
+              <option key={item.id} value={item.id}>
                 Kadın&nbsp;{item.title}
               </option>
             ))}
             {manItem.map((item) => (
-              <option key={item.id} value={item.id} className="flex flex-col">
+              <option key={item.id} value={item.id}>
                 Erkek&nbsp;{item.title}
               </option>
             ))}

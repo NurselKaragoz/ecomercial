@@ -41,39 +41,36 @@ function Navigator() {
             to="/shopping"
           >
             <li>Shop</li>
-            <div className=" flex flex-row text-left">
-              <Dropdown inline className="flex font-semibold">
-                {/* Left side for Kadın */}
-                <div className="flex flex-col text-left">
-                  <span>Kadın</span>
-                  {womanItem.map((item) => (
-                    <Dropdown.Item key={item.id} className="flex flex-col">
-                      <Link
-                        className="no-underline text-colors-gray font-normal"
-                        to={`/shopping/kadın/${String(
-                          item.title
-                        ).toLocaleLowerCase()}`}
-                      >
-                        Kadın&nbsp;{item.title}
-                      </Link>
-                    </Dropdown.Item>
-                  ))}
-                </div>
-                <div className="flex flex-col mt-0 ml-72">
-                  <span>Erkek</span>
-                  {manItem.map((item) => (
-                    <Dropdown.Item key={item.id} className="flex flex-col">
-                      <Link
-                        className="no-underline text-colors-gray font-normal"
-                        to={`/shopping/erkek/${String(item.title.toLowerCase)}`}
-                      >
-                        Erkek&nbsp;{item.title}
-                      </Link>
-                    </Dropdown.Item>
-                  ))}
-                </div>
-              </Dropdown>
-            </div>
+            <Dropdown inline className="flex font-semibold">
+              <div className="flex flex-col">
+                <span>Kadın</span>
+                {womanItem.map((item) => (
+                  <Dropdown.Item key={item.id} className="flex flex-col">
+                    <Link
+                      className="no-underline text-colors-gray font-normal"
+                      to={`/shopping/kadın/${String(
+                        item.title
+                      ).toLocaleLowerCase()}`}
+                    >
+                      Kadın&nbsp;{item.title}
+                    </Link>
+                  </Dropdown.Item>
+                ))}
+              </div>
+              <div className="flex flex-col ">
+                <span>Erkek</span>
+                {manItem.map((item) => (
+                  <Dropdown.Item key={item.id} className="flex flex-col">
+                    <Link
+                      className="no-underline text-colors-gray font-normal"
+                      to={`/shopping/erkek/${String(item.title.toLowerCase)}`}
+                    >
+                      Erkek&nbsp;{item.title}
+                    </Link>
+                  </Dropdown.Item>
+                ))}
+              </div>
+            </Dropdown>
           </Link>
 
           <Link className="text-colors-gray no-underline" to="/about">
