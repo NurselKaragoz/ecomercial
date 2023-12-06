@@ -6,9 +6,10 @@ import { BsListCheck } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../Store/Actions/GlobalActions";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { fetchProduct } from "../Store/Actions/productActions";
 import { useForm } from "react-hook-form";
+import { Button } from "@mui/material";
 
 function ProductListPage() {
   const categories = useSelector((state) => state.global?.categories);
@@ -17,7 +18,7 @@ function ProductListPage() {
   const { products } = useSelector((s) => s.product.product);
 
   const [search, setSearch] = useState();
-
+  const history = useHistory();
   console.log("Search:", search);
   const dispatch = useDispatch();
 
@@ -38,10 +39,21 @@ function ProductListPage() {
   console.log("Indices of the largest five elements:", top5Categories);
 
   const { register, handleSubmit } = useForm({});
+  const handleCategoryClick = async (categoryId) => {
+    try {
+      dispatch(fetchProduct(undefined, categoryId, undefined));
+
+      const queryParams = new URLSearchParams({ category: categoryId });
+      window.history.replaceState({}, "", `?${queryParams.toString()}`);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
   const onSubmit = async (data) => {
     try {
       dispatch(fetchProduct(data.filter, data.category, data.sort));
+
       const queryParams = new URLSearchParams({
         sort: data.sort,
         filter: data.filter,
@@ -75,7 +87,12 @@ function ProductListPage() {
               category.gender == "e" ? "erkek" : "kadın"
             }/${String(category.title).toLowerCase()}`}
           >
-            <ShopListCard key={category.id} category={category} />
+            <Button
+              key={category.id}
+              onClick={() => handleCategoryClick(category.id)}
+            >
+              <ShopListCard key={category.id} category={category} />
+            </Button>
           </Link>
         ))}
       </div>
@@ -106,6 +123,7 @@ function ProductListPage() {
               </option>
             ))}
           </select>
+
           <select {...register("sort", {})}>
             <option value={"price:asc"}>En düşük fiyat</option>
             <option value={"price:desc"}>En yüksek fiyat</option>
