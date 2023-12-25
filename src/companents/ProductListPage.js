@@ -10,7 +10,7 @@ import { Link, useHistory } from "react-router-dom";
 import { fetchProduct } from "../Store/Actions/productActions";
 import { useForm } from "react-hook-form";
 import { Button } from "@mui/material";
-
+import PaginationNav1Presentation from "./Pagination";
 function ProductListPage() {
   const categories = useSelector((state) => state.global?.categories);
   console.log("cattt;", categories);
@@ -18,7 +18,6 @@ function ProductListPage() {
   const { products } = useSelector((s) => s.product.product);
 
   const [search, setSearch] = useState();
-  const history = useHistory();
   console.log("Search:", search);
   const dispatch = useDispatch();
 
@@ -49,15 +48,36 @@ function ProductListPage() {
       console.error("Error fetching products:", error);
     }
   };
+  const onSubmitSecond = async (data) => {
+    try {
+      dispatch(fetchProduct(data.limit, data.offset));
 
+      const queryParams = new URLSearchParams({
+        limit: data.limit,
+        offset: data.offset,
+      });
+      window.history.replaceState({}, "", `?${queryParams.toString()}`);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
   const onSubmit = async (data) => {
     try {
-      dispatch(fetchProduct(data.filter, data.category, data.sort));
+      dispatch(
+        fetchProduct(
+          data.filter,
+          data.category,
+          data.sort,
+          data.limit,
+          data.offset
+        )
+      );
 
       const queryParams = new URLSearchParams({
         sort: data.sort,
         filter: data.filter,
         category: data.category,
+        limit: data.limit,
       });
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
 
@@ -175,6 +195,23 @@ function ProductListPage() {
             <span class="sr-only">Loading...</span>
           </div>
         )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            {...register("limit", {})}
+            className=" flex-auto rounded border border-solid border-colors-lacivert bg-transparent bg-clip-padding px-2 py-2 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out  dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary items-center"
+            placeholder="limit"
+          />
+          <input
+            {...register("offset", {})}
+            className=" flex-auto rounded border border-solid border-colors-lacivert bg-transparent bg-clip-padding px-2 py-2 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out  dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary items-center"
+            placeholder="offset"
+          />
+          <input
+            type="submit"
+            className=" bg-colors-lacivert hover:bg-blue-500 text-colors-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          />
+        </form>
+        <PaginationNav1Presentation />
       </div>
       <Clients />
     </div>

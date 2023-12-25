@@ -33,26 +33,29 @@ const setProductList = (productList) => ({
   payload: productList,
 });
 
-export const fetchProduct = (filter, category, sort) => (dispatch) => {
-  const queryParams = new URLSearchParams();
-  if (filter) queryParams.append("filter", filter);
-  if (category) queryParams.append("category", category);
+export const fetchProduct =
+  (filter, category, sort, limit, offset) => (dispatch) => {
+    const queryParams = new URLSearchParams();
+    if (filter) queryParams.append("filter", filter);
+    if (category) queryParams.append("category", category);
+    if (limit) queryParams.append("limit", limit);
+    if (offset) queryParams.append("offset", offset);
+    if (sort) queryParams.append("sort", sort);
 
-  if (sort) queryParams.append("sort", sort);
+    console.log("sort action :", sort);
+    console.log("category action :", category);
+    console.log("limit action :", limit);
 
-  console.log("sort action :", sort);
-  console.log("category action :", category);
+    axiosInstance
+      .get(`/products?${queryParams.toString()}`)
 
-  axiosInstance
-    .get(`/products?${queryParams.toString()}`)
+      .then(function (response) {
+        console.log("product data =>", response.data);
 
-    .then(function (response) {
-      console.log("product data =>", response.data);
-
-      dispatch(setProduct(response.data));
-    })
-    .catch(function (error) {
-      console.log("product error", error);
-    });
-  console.log("query param", queryParams);
-};
+        dispatch(setProduct(response.data));
+      })
+      .catch(function (error) {
+        console.log("product error", error);
+      });
+    console.log("query param", queryParams);
+  };
