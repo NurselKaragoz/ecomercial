@@ -16,6 +16,7 @@ function ProductListPage() {
   console.log("cattt;", categories);
 
   const { products } = useSelector((s) => s.product.product);
+  setPosts(products);
 
   const [search, setSearch] = useState();
   console.log("Search:", search);
@@ -36,8 +37,13 @@ function ProductListPage() {
   const top5Categories = sortedCategories.slice(0, 5);
 
   console.log("Indices of the largest five elements:", top5Categories);
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setpostPerPage] = useState(10);
+  const [totalPages, setTotalPages] = useState(5);
 
   const { register, handleSubmit } = useForm({});
+
   const handleCategoryClick = async (categoryId) => {
     try {
       dispatch(fetchProduct(undefined, categoryId, undefined));
@@ -48,6 +54,7 @@ function ProductListPage() {
       console.error("Error fetching products:", error);
     }
   };
+
   const onSubmitSecond = async (data) => {
     try {
       dispatch(fetchProduct(data.limit, data.offset));
@@ -56,6 +63,7 @@ function ProductListPage() {
         limit: data.limit,
         offset: data.offset,
       });
+
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -95,6 +103,15 @@ function ProductListPage() {
       manItem.push(categories[i]);
     }
   }
+  console.log("post=>>>", posts);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost - indexOfLastPost);
   return (
     <div className="p-4 md:p-10">
       <h2 className="text-colors-lacivert md:text-left bg-colors-gray100 pt-5 mb-0">
@@ -211,7 +228,11 @@ function ProductListPage() {
             className=" bg-colors-lacivert hover:bg-blue-500 text-colors-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
           />
         </form>
-        <PaginationNav1Presentation />
+        <PaginationNav1Presentation
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />{" "}
       </div>
       <Clients />
     </div>

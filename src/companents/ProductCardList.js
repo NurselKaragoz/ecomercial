@@ -16,8 +16,7 @@ export default function ProductCardList({ product }) {
             <h5 className="font-bold text-xl">{product.name}</h5>
             <p className="text-colors-gray">{product.description}</p>
             <div className="flex flex-row items-center gap-3">
-              <h5 className="text-colors-gray">${product.price}</h5>
-              <h5 className="text-colors-green font-bold">$6.48</h5>
+              <h5 className="text-colors-green font-bold">${product.price}</h5>
             </div>
             <div className="flex flex-row gap-2 pb-3 text-colors-lacivert">
               <BsCircleFill size={20} color="blue" />
