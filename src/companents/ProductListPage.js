@@ -6,21 +6,19 @@ import { BsListCheck } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../Store/Actions/GlobalActions";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchProduct } from "../Store/Actions/productActions";
 import { useForm } from "react-hook-form";
 import { Button } from "@mui/material";
-import PaginationNav1Presentation from "./Pagination";
+import Pagination from "./Pagination";
+
 function ProductListPage() {
   const categories = useSelector((state) => state.global?.categories);
-  console.log("cattt;", categories);
-
   const { products } = useSelector((s) => s.product.product);
-  setPosts(products);
 
-  const [search, setSearch] = useState();
-  console.log("Search:", search);
+  const [search] = useState();
   const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm({});
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -31,18 +29,20 @@ function ProductListPage() {
       dispatch(fetchProduct());
     }
   }, []);
-
+  //Categori bölümü
   let rateArray = categories;
   const sortedCategories = rateArray.sort((a, b) => b.rating - a.rating);
   const top5Categories = sortedCategories.slice(0, 5);
 
-  console.log("Indices of the largest five elements:", top5Categories);
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setpostPerPage] = useState(10);
-  const [totalPages, setTotalPages] = useState(5);
-
-  const { register, handleSubmit } = useForm({});
+  let womanItem = [];
+  let manItem = [];
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].gender === "k") {
+      womanItem.push(categories[i]);
+    } else {
+      manItem.push(categories[i]);
+    }
+  }
 
   const handleCategoryClick = async (categoryId) => {
     try {
@@ -55,63 +55,40 @@ function ProductListPage() {
     }
   };
 
-  const onSubmitSecond = async (data) => {
-    try {
-      dispatch(fetchProduct(data.limit, data.offset));
-
-      const queryParams = new URLSearchParams({
-        limit: data.limit,
-        offset: data.offset,
-      });
-
-      window.history.replaceState({}, "", `?${queryParams.toString()}`);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
   const onSubmit = async (data) => {
     try {
-      dispatch(
-        fetchProduct(
-          data.filter,
-          data.category,
-          data.sort,
-          data.limit,
-          data.offset
-        )
-      );
+      dispatch(fetchProduct(data.filter, data.category, data.sort));
 
       const queryParams = new URLSearchParams({
         sort: data.sort,
         filter: data.filter,
         category: data.category,
-        limit: data.limit,
       });
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
+    } catch (error) {}
+  };
 
-      console.log("register:", data.sort);
+  //OnClickHandler for Pagination page
+  const onClickHandler = async (data) => {
+    try {
+      const defaultLimit = 25;
+      const defaultOffset = 25;
+
+      const limit = data.limit || defaultLimit;
+      const offset = data.offset || defaultOffset;
+
+      dispatch(fetchProduct(limit, offset));
+      console.log("onclick >>>>", limit, offset);
+
+      const queryParams = new URLSearchParams({
+        limit,
+        offset,
+      });
+      window.history.replaceState({}, "", `?${queryParams.toString()}`);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("Error fetching data:", error);
     }
   };
-  let womanItem = [];
-  let manItem = [];
-  for (let i = 0; i < categories.length; i++) {
-    if (categories[i].gender === "k") {
-      womanItem.push(categories[i]);
-    } else {
-      manItem.push(categories[i]);
-    }
-  }
-  console.log("post=>>>", posts);
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
-
-  const indexOfLastPost = currentPage * postPerPage;
-  const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost - indexOfLastPost);
   return (
     <div className="p-4 md:p-10">
       <h2 className="text-colors-lacivert md:text-left bg-colors-gray100 pt-5 mb-0">
@@ -212,27 +189,8 @@ function ProductListPage() {
             <span class="sr-only">Loading...</span>
           </div>
         )}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            {...register("limit", {})}
-            className=" flex-auto rounded border border-solid border-colors-lacivert bg-transparent bg-clip-padding px-2 py-2 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out  dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary items-center"
-            placeholder="limit"
-          />
-          <input
-            {...register("offset", {})}
-            className=" flex-auto rounded border border-solid border-colors-lacivert bg-transparent bg-clip-padding px-2 py-2 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out  dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary items-center"
-            placeholder="offset"
-          />
-          <input
-            type="submit"
-            className=" bg-colors-lacivert hover:bg-blue-500 text-colors-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-          />
-        </form>
-        <PaginationNav1Presentation
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />{" "}
+        <Button onClick={onClickHandler}>Button </Button>
+        {/* <Pagination onClickHandler={onClickHandler(25, 50)} /> */}
       </div>
       <Clients />
     </div>
