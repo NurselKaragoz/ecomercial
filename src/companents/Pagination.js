@@ -1,42 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { fetchProduct } from "../Store/Actions/productActions";
 
-export default function Pagination() {
+export default function Pagination({ onClickHandler }) {
+  // useEffect(() => {
+  //   dispatch(fetchProduct(initialLimit, initialOffset));
+  // }, [dispatch]);
+
+  // const onClickHandler = async (limit, offset) => {
+  //   try {
+  //     dispatch(fetchProduct(limit, offset));
+  //     console.log("limit and offset>>>", limit, offset);
+  //     setData({ limit, offset });
+  //     console.log("setdatapagination=>>>", setData);
+  //     const queryParams = new URLSearchParams({
+  //       limit: limit,
+  //       offset: offset,
+  //     });
+  //     window.history.replaceState({}, "", `?${queryParams.toString()}`);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  //   console.log("datapagination=>>>", data);
+  // };
+
   return (
     <nav aria-label="Page navigation example">
-      <ul className="list-style-none flex">
-        <li>
-          <a
-            className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-            href="#"
+      {/* <ul className="gap-4 flex">
+        {pageNumber.map((number) => (
+          <li
+            key={number}
+            className="border-colors-blue300 border-solid cursor-pointer"
+            onClick={() => onPageClick(number)}
           >
-            Previous
-          </a>
-        </li>
-        <li>
-          <a
-            className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-            href="#"
-          >
-            1
-          </a>
-        </li>
-        <li aria-current="page">
-          <a
-            className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-            href="#"
-          >
-            2
-          </a>
-        </li>
-        <li>
-          <a
-            className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-            href="#"
-          >
-            3
-          </a>
-        </li>
-      </ul>
+            <Button>{number}</Button>
+          </li>
+        ))}
+      </ul> */}
+      <div>
+        <button
+          className="border-solid bg-colors-green"
+          onClick={() => onClickHandler()}
+        >
+          Fetch Data
+        </button>
+      </div>
     </nav>
   );
 }

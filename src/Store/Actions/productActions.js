@@ -1,4 +1,3 @@
-import { Link } from "@mui/material";
 import axiosInstance from "../../Axios/axiosInstance";
 export const SET_PRODUCT_LIST = "SET_PRODUCT_LIST";
 export const SET_TOTAL_PRODUCT_COUNT = "SET_TOTAL_PRODUCT_COUNT";
@@ -41,10 +40,6 @@ export const fetchProduct =
     if (limit) queryParams.append("limit", limit);
     if (offset) queryParams.append("offset", offset);
     if (sort) queryParams.append("sort", sort);
-
-    console.log("sort action :", sort);
-    console.log("category action :", category);
-    console.log("limit action :", limit);
 
     axiosInstance
       .get(`/products?${queryParams.toString()}`)
