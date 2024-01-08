@@ -19,6 +19,8 @@ function ProductListPage() {
   const [search] = useState();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm({});
+  const [queryParams, setQueryParams] = useState();
+  const [offset, setOffset] = useState(25);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -48,7 +50,7 @@ function ProductListPage() {
     try {
       dispatch(fetchProduct(undefined, categoryId, undefined));
 
-      const queryParams = new URLSearchParams({ category: categoryId });
+      setQueryParams(new URLSearchParams({ category: categoryId }));
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -59,31 +61,34 @@ function ProductListPage() {
     try {
       dispatch(fetchProduct(data.filter, data.category, data.sort));
 
-      const queryParams = new URLSearchParams({
-        sort: data.sort,
-        filter: data.filter,
-        category: data.category,
-      });
+      setQueryParams(
+        new URLSearchParams({
+          sort: data.sort,
+          filter: data.filter,
+          category: data.category,
+        })
+      );
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
     } catch (error) {}
   };
 
   //OnClickHandler for Pagination page
+
   const onClickHandler = async (data) => {
+    console.log("onclickhandler", data);
     try {
       const defaultLimit = 25;
-      const defaultOffset = 25;
+      //  const defaultOffset = 25;
 
       const limit = data.limit || defaultLimit;
-      const offset = data.offset || defaultOffset;
+      // const offset = data.offset || defaultOffset;
+      setQueryParams(new URLSearchParams({ ...queryParams, limit, offset }));
 
-      dispatch(fetchProduct(limit, offset));
-      console.log("onclick >>>>", limit, offset);
+      dispatch(fetchProduct(queryParams, limit, offset));
+      setOffset(offset + 25);
 
-      const queryParams = new URLSearchParams({
-        limit,
-        offset,
-      });
+      console.log("onclick >>>>", queryParams, offset, limit);
+
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
     } catch (error) {
       console.error("Error fetching data:", error);
