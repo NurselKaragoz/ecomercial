@@ -32,25 +32,29 @@ const setProductList = (productList) => ({
   payload: productList,
 });
 
-export const fetchProduct =
-  (filter, category, sort, limit, offset) => (dispatch) => {
-    const queryParams = new URLSearchParams();
-    if (filter) queryParams.append("filter", filter);
-    if (category) queryParams.append("category", category);
-    if (limit) queryParams.append("limit", limit);
-    if (offset) queryParams.append("offset", offset);
-    if (sort) queryParams.append("sort", sort);
+export const fetchProduct = (queryParams, limit, offset) => (dispatch) => {
+  const queryParams = new URLSearchParams();
+  if (queryParams.filter) queryParams.append("filter", queryParams.filter);
+  if (queryParams.category)
+    queryParams.append("category", queryParams.category);
+  if (queryParams.sort) queryParams.append("sort", queryParams.sort);
 
-    axiosInstance
-      .get(`/products?${queryParams.toString()}`)
+  if (limit) queryParams.append("limit", limit);
+  if (offset) queryParams.append("offset", offset);
+  console.log("limit offset action >>>>", limit, offset);
 
-      .then(function (response) {
-        console.log("product data =>", response.data);
+  // axiosInstance
+  //   .get(`/products?${queryParams.toString()}`)
+  axiosInstance
+    .get(`/products`, queryParams)
 
-        dispatch(setProduct(response.data));
-      })
-      .catch(function (error) {
-        console.log("product error", error);
-      });
-    console.log("query param", queryParams);
-  };
+    .then(function (response) {
+      console.log("product data action =>", response.data);
+
+      dispatch(setProduct(response.data));
+    })
+    .catch(function (error) {
+      console.log("product error", error);
+    });
+  console.log("query param", queryParams);
+};
