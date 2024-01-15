@@ -19,7 +19,6 @@ function ProductListPage() {
   const [search] = useState();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm({});
-  const [queryParams, setQueryParams] = useState();
   const [offset, setOffset] = useState(25);
 
   useEffect(() => {
@@ -50,7 +49,7 @@ function ProductListPage() {
     try {
       dispatch(fetchProduct(undefined, categoryId, undefined));
 
-      setQueryParams(new URLSearchParams({ category: categoryId }));
+      const queryParams = new URLSearchParams({ category: categoryId });
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -61,39 +60,26 @@ function ProductListPage() {
     try {
       dispatch(fetchProduct(data.filter, data.category, data.sort));
 
-      setQueryParams(
-        new URLSearchParams({
-          sort: data.sort,
-          filter: data.filter,
-          category: data.category,
-        })
-      );
+      const queryParams = new URLSearchParams({
+        sort: data.sort,
+        filter: data.filter,
+        category: data.category,
+      });
+      window.history.replaceState({}, "", `?${queryParams.toString()}`);
+    } catch (error) {}
+  };
+  const onClickHandler = async (data) => {
+    try {
+      dispatch(fetchProduct(data.limit, data.offset));
+
+      const queryParams = new URLSearchParams({
+        limit: data.limit,
+        offset: data.offset,
+      });
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
     } catch (error) {}
   };
 
-  //OnClickHandler for Pagination page
-
-  const onClickHandler = async (data) => {
-    console.log("onclickhandler", data);
-    try {
-      const defaultLimit = 25;
-      //  const defaultOffset = 25;
-
-      const limit = data.limit || defaultLimit;
-      // const offset = data.offset || defaultOffset;
-      setQueryParams(new URLSearchParams({ ...queryParams, limit, offset }));
-
-      dispatch(fetchProduct(queryParams, limit, offset));
-      setOffset(offset + 25);
-
-      console.log("onclick >>>>", queryParams, offset, limit);
-
-      window.history.replaceState({}, "", `?${queryParams.toString()}`);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
   return (
     <div className="p-4 md:p-10">
       <h2 className="text-colors-lacivert md:text-left bg-colors-gray100 pt-5 mb-0">
@@ -171,7 +157,11 @@ function ProductListPage() {
                 : product.description.toLowerCase().includes(searchLowerCase);
             })
             .map((product) => (
-              <ProductCardList key={product.id} product={product} />
+              <ProductCardList
+                key={product.id}
+                product={product}
+                categories={categories}
+              />
             ))
         ) : (
           <div role="status">
@@ -194,8 +184,7 @@ function ProductListPage() {
             <span class="sr-only">Loading...</span>
           </div>
         )}
-        <Button onClick={onClickHandler}>Button </Button>
-        {/* <Pagination onClickHandler={onClickHandler(25, 50)} /> */}
+        <Button onClickHandler={onClickHandler}>Button </Button>
       </div>
       <Clients />
     </div>

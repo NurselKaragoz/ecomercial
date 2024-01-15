@@ -1,5 +1,5 @@
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useParams } from "react-router-dom";
 
 import Header from "./companents/Header";
 
@@ -40,7 +40,10 @@ function App() {
       <Navigator />
 
       <Switch>
-        <Route path="/shoplist" component={ProductPage} />
+        <Route
+          path="/:category/:productId/:productName"
+          component={ProductPage}
+        />
         <Route path="/contact" component={ContactPage} />
         <Route path="/shopping" component={ProductListPage} />
         <Route path="/about" component={AboutPage} />

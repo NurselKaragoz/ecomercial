@@ -1,11 +1,32 @@
 import React from "react";
 import { BsCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function ProductCardList({ product }) {
+function createUrlString(text) {
+  return (
+    text
+      .toLowerCase()
+      // .replace(/[^a-z0-9 -]/g, "")
+      .replace(/\s+/g, "")
+  );
+}
+
+export default function ProductCardList({ product, categories }) {
+  const { gender, category, productId, productName } = useParams();
+  if (product.category_id === categories.id) {
+    const result = categories.title;
+    console.log("title result", result);
+  }
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-      <Link className=" no-underline" to="/shoplist">
+      {/* {categories.map((category) => ( */}
+      <Link
+        className=" no-underline"
+        to={`/${String(categories[product.category_id].title)?.toLowerCase()}/${
+          product.id
+        }/${createUrlString(product.name)}`}
+      >
         <div className="card bg-colors-gray">
           <img
             src={product.images[0].url}
@@ -27,6 +48,7 @@ export default function ProductCardList({ product }) {
           </div>
         </div>
       </Link>
+      {/* ))} */}
     </div>
   );
 }
