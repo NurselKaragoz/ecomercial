@@ -42,7 +42,7 @@ function Navigator() {
           >
             <li>Shop</li>
             <Dropdown inline className="flex font-semibold">
-              <div className="flex flex-col">
+              <div className="flex flex-col z-10">
                 <span>Kadın</span>
                 {womanItem.map((item) => (
                   <Dropdown.Item key={item.id} className="flex flex-col">

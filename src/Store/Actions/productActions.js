@@ -32,24 +32,20 @@ const setProductList = (productList) => ({
   payload: productList,
 });
 
-export const fetchProduct = (queryParams, limit, offset) => (dispatch) => {
+export const fetchProduct = (filter, category, sort) => (dispatch) => {
   const queryParams = new URLSearchParams();
-  if (queryParams.filter) queryParams.append("filter", queryParams.filter);
-  if (queryParams.category)
-    queryParams.append("category", queryParams.category);
-  if (queryParams.sort) queryParams.append("sort", queryParams.sort);
+  if (filter) queryParams.append("filter", filter);
+  if (category) queryParams.append("category", category);
+  if (sort) queryParams.append("sort", sort);
 
-  if (limit) queryParams.append("limit", limit);
-  if (offset) queryParams.append("offset", offset);
-  console.log("limit offset action >>>>", limit, offset);
+  console.log("sort action :", sort);
+  console.log("category action :", category);
 
-  // axiosInstance
-  //   .get(`/products?${queryParams.toString()}`)
   axiosInstance
-    .get(`/products`, queryParams)
+    .get(`/products?${queryParams.toString()}`)
 
     .then(function (response) {
-      console.log("product data action =>", response.data);
+      console.log("product data =>", response.data);
 
       dispatch(setProduct(response.data));
     })
