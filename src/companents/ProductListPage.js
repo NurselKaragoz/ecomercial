@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../Store/Actions/GlobalActions";
 import { Link } from "react-router-dom";
 import { fetchProduct } from "../Store/Actions/productActions";
-import { useForm } from "react-hook-form";
+import { Form, useForm } from "react-hook-form";
 import { Button } from "@mui/material";
 import Pagination from "./Pagination";
 
@@ -19,7 +19,6 @@ function ProductListPage() {
   const [search] = useState();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm({});
-  const [offset, setOffset] = useState(25);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -64,21 +63,25 @@ function ProductListPage() {
         sort: data.sort,
         filter: data.filter,
         category: data.category,
-      });
-      window.history.replaceState({}, "", `?${queryParams.toString()}`);
-    } catch (error) {}
-  };
-  const onClickHandler = async (data) => {
-    try {
-      dispatch(fetchProduct(data.limit, data.offset));
-
-      const queryParams = new URLSearchParams({
         limit: data.limit,
-        offset: data.offset,
       });
+      console.log("productlistpahe ", data);
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
     } catch (error) {}
   };
+  // const onClickHandler = async (data) => {
+  //   try {
+  //     dispatch(fetchProduct(data.limit, data.offset));
+
+  //     const queryParams = new URLSearchParams({
+  //       limit: data.limit,
+  //       offset: data.offset,
+  //     });
+  //     window.history.replaceState({}, "", `?${queryParams.toString()}`);
+  //   } catch (error) {
+  //     console.log("limit offset err", error);
+  //   }
+  // };
 
   return (
     <div className="p-4 md:p-10">
@@ -184,7 +187,10 @@ function ProductListPage() {
             <span class="sr-only">Loading...</span>
           </div>
         )}
-        <Button onClickHandler={onClickHandler}>Button </Button>
+
+        <Button onSubmit={handleSubmit(onSubmit)} value={24}>
+          Button
+        </Button>
       </div>
       <Clients />
     </div>

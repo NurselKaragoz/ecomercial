@@ -16,7 +16,7 @@ const shoppingCartReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        cart: [...state.cart, { count: action.count, product: action.product }],
+        cart: [...state.cart, { product: action.payload }],
       };
     case REMOVE_FROM_CART:
       return {
