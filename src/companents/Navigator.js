@@ -3,17 +3,20 @@ import { IoPersonOutline } from "react-icons/io5";
 import { BiSearch } from "react-icons/bi";
 import { LiaShoppingCartSolid } from "react-icons/lia";
 import { AiOutlineHeart } from "react-icons/ai";
-import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import md5 from "md5";
 import Avatar from "@mui/material/Avatar";
 import "react-toastify/dist/ReactToastify.css";
 import { Dropdown } from "flowbite-react";
+import { DropdownItem } from "flowbite-react/lib/esm/components/Dropdown/DropdownItem";
 
 function Navigator() {
   const user = useSelector((store) => store.user);
   const categories = useSelector((state) => state.global?.categories);
+  const cart = useSelector((state) => state.shoppingCart.cart);
+  console.log("cartt", cart);
+
   let womanItem = [];
   let manItem = [];
   for (let i = 0; i < categories.length; i++) {
@@ -105,7 +108,19 @@ function Navigator() {
             <span className="hidden md:inline"> Register</span>
           </Link>
           <BiSearch />
-          <LiaShoppingCartSolid />1
+          <LiaShoppingCartSolid />
+          {cart.length}
+          <Dropdown inline className=" text-colors-lacivert">
+            Sepetim ({cart.length} ürün)
+            {cart.map((item) => (
+              <DropdownItem key={item.product.id}>
+                {" "}
+                <img src={item.product.images[0].url} className=" w-8" />
+                {item.product.name} {item.count} -<br />
+                {item.product.price}
+              </DropdownItem>
+            ))}
+          </Dropdown>
           <AiOutlineHeart />1
         </div>
       </div>

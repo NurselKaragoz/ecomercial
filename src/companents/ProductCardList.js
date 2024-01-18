@@ -1,7 +1,10 @@
+import { Button } from "@mui/material";
 import React from "react";
 import { BsCircleFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { addToCart } from "../Store/Actions/shoppingCartActions";
 
 function createUrlString(text) {
   return (
@@ -14,10 +17,8 @@ function createUrlString(text) {
 
 export default function ProductCardList({ product, categories }) {
   const { gender, category, productId, productName } = useParams();
-  if (product.category_id === categories.id) {
-    const result = categories.title;
-    console.log("title result", result);
-  }
+  const dispatch = useDispatch();
+
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
       {/* {categories.map((category) => ( */}
@@ -49,6 +50,9 @@ export default function ProductCardList({ product, categories }) {
         </div>
       </Link>
       {/* ))} */}
+      <button onClick={() => dispatch(addToCart(product))}>
+        Sepete Ekle{" "}
+      </button>{" "}
     </div>
   );
 }
