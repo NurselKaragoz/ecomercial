@@ -21,14 +21,16 @@ export default function ProductCardList({ product, categories }) {
 
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-      {/* {categories.map((category) => ( */}
-      <Link
-        className=" no-underline"
-        to={`/${String(categories[product.category_id].title)?.toLowerCase()}/${
-          product.id
-        }/${createUrlString(product.name)}`}
-      >
-        <div className="card bg-colors-gray">
+      <div className="card bg-colors-gray">
+        <Link
+          className=" no-underline"
+          to={`/${String(
+            categories[product.category_id].title
+          )?.toLowerCase()}/${product.id}/${createUrlString(product.name)}`}
+          state={{
+            product,
+          }}
+        >
           <img
             src={product.images[0].url}
             alt="Product Cover"
@@ -47,12 +49,16 @@ export default function ProductCardList({ product, categories }) {
               <BsCircleFill size={20} color="darkblue" />
             </div>
           </div>
+        </Link>
+        <div className=" pb-4">
+          <button
+            className=" text-colors-white border-2 border-colors-blue w-32 h-10 rounded bg-colors-blue"
+            onClick={() => dispatch(addToCart(product))}
+          >
+            Sepete Ekle
+          </button>
         </div>
-      </Link>
-      {/* ))} */}
-      <button onClick={() => dispatch(addToCart(product))}>
-        Sepete Ekle{" "}
-      </button>{" "}
+      </div>
     </div>
   );
 }

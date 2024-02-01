@@ -3,7 +3,18 @@ import { AiOutlineStar } from "react-icons/ai";
 import { BsCircleFill } from "react-icons/bs";
 import { GrFormNext } from "react-icons/gr";
 import CarouselDefault from "./Carousel";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useSelector } from "react-redux";
 function Shop() {
+  const { products } = useSelector((s) => s.product.product);
+
+  let state = useLocation();
+
+  console.log("state curosel", state.pathname);
+
+  const productId = state.pathname.split("/")[2];
+  console.log("ProductId shop:", productId);
+
   return (
     <div className="bg-colors-gray100 pt-14 pb-14">
       <div className=" flex flex-row  items-center text-colors-gray pl-80 pb-10">
@@ -15,7 +26,9 @@ function Shop() {
         <CarouselDefault />
 
         <div className=" text-colors-gray flex flex-col  max-w-lg text-left gap-2">
-          <h4 className=" text-colors-lacivert">Floating Phone</h4>
+          <h4 className=" text-colors-lacivert">
+            {products[productId - 2].name}
+          </h4>
           <div className=" text-colors-yellow flex flex-row items-center">
             <AiFillStar />
             <AiFillStar />
@@ -24,15 +37,13 @@ function Shop() {
             <AiOutlineStar />
             <span className=" text-colors-gray">10 Reviews</span>
           </div>
-          <h5 className=" text-colors-lacivert">$1,139.33</h5>
+          <h5 className=" text-colors-lacivert">
+            {products[productId - 2].price}$
+          </h5>
           <h6>
             Availability:<span className=" text-colors-blue">In Stock</span>
           </h6>
-          <p>
-            Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
-            RELIT official consequent door ENIM RELIT Mollie. Excitation venial
-            consequent sent nostrum met.
-          </p>
+          <p>{products[productId - 2].description}</p>
           <div className=" flex flex-row  gap-2 pb-5 text-colors-lacivert">
             <BsCircleFill size={30} color=" blue" />
             <BsCircleFill size={30} color=" green" />

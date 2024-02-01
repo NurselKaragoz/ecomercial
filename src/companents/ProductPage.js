@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import BestsellerCard from "./BestsellerCard";
 import Clients from "./Clients";
 
@@ -15,7 +16,8 @@ function ProductList() {
     { id: 7 },
     { id: 8 },
   ];
-
+  let state = useLocation();
+  console.log("state::", state);
   return (
     <div className="p-4 md:p-10">
       <Shop />
