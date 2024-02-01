@@ -27,6 +27,14 @@ function Navigator() {
     }
   }
 
+  let totalBasketProduct = 0;
+  function basketCount(x) {
+    for (let i = 0; i < x; i++) {
+      totalBasketProduct += cart[i].count;
+    }
+    return totalBasketProduct;
+  }
+
   return (
     <div className=" text-colors-white p-4">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
@@ -108,19 +116,26 @@ function Navigator() {
             <span className="hidden md:inline"> Register</span>
           </Link>
           <BiSearch />
-          <LiaShoppingCartSolid />
-          {cart.length}
-          <Dropdown inline className=" text-colors-lacivert">
-            Sepetim ({cart.length} ürün)
+          <Dropdown
+            renderTrigger={() => (
+              <span>
+                <LiaShoppingCartSolid />
+              </span>
+            )}
+            className=" text-colors-lacivert"
+            icon={LiaShoppingCartSolid}
+          >
+            Sepetim ({basketCount(cart.length)} ürün)
             {cart.map((item) => (
               <DropdownItem key={item.product.id}>
                 {" "}
                 <img src={item.product.images[0].url} className=" w-8" />
-                {item.product.name} {item.count} -<br />
+                {item.product.name} - {item.count} adet <br />${" "}
                 {item.product.price}
               </DropdownItem>
             ))}
           </Dropdown>
+          {basketCount(cart.length)}
           <AiOutlineHeart />1
         </div>
       </div>
