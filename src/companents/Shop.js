@@ -23,11 +23,11 @@ function Shop() {
         <h5>Shop</h5>
       </div>
       <div className=" flex md:flex-row justify-center gap-10 md:justify-center flex-col items-center ">
-        <CarouselDefault />
+        <CarouselDefault product={products} />
 
         <div className=" text-colors-gray flex flex-col  max-w-lg text-left gap-2">
           <h4 className=" text-colors-lacivert">
-            {products[productId - 2].name}
+            {/* {products[productId - 2].name} */}
           </h4>
           <div className=" text-colors-yellow flex flex-row items-center">
             <AiFillStar />
@@ -38,12 +38,12 @@ function Shop() {
             <span className=" text-colors-gray">10 Reviews</span>
           </div>
           <h5 className=" text-colors-lacivert">
-            {products[productId - 2].price}$
+            {/* {products[productId - 2].price}$ */}
           </h5>
           <h6>
             Availability:<span className=" text-colors-blue">In Stock</span>
           </h6>
-          <p>{products[productId - 2].description}</p>
+          {/* <p>{products[productId - 2].description}</p> */}
           <div className=" flex flex-row  gap-2 pb-5 text-colors-lacivert">
             <BsCircleFill size={30} color=" blue" />
             <BsCircleFill size={30} color=" green" />

@@ -63,7 +63,6 @@ function ProductListPage() {
         sort: data.sort,
         filter: data.filter,
         category: data.category,
-        limit: data.limit,
       });
       console.log("productlistpahe ", data);
       window.history.replaceState({}, "", `?${queryParams.toString()}`);
