@@ -51,12 +51,14 @@ export default function ProductCardList({ product, categories }) {
           </div>
         </Link>
         <div className=" pb-4">
-          <button
-            className=" text-colors-white border-2 border-colors-blue w-32 h-10 rounded bg-colors-blue"
-            onClick={() => dispatch(addToCart(product))}
-          >
-            Sepete Ekle
-          </button>
+          {product.category_id && (
+            <button
+              className="text-colors-white border-2 border-colors-blue w-32 h-10 rounded bg-colors-blue"
+              onClick={() => dispatch(addToCart(product))}
+            >
+              Sepete Ekle
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import Clients from "./Clients";
 
 import ProductDescription from "./ProductDescripciton";
 import Shop from "./Shop";
+import ProductCardList from "./ProductCardList";
 
 function ProductList() {
   const productList = [
@@ -15,7 +16,9 @@ function ProductList() {
     { id: 6 },
     { id: 7 },
     { id: 8 },
+    { id: 9 },
   ];
+
   let state = useLocation();
   console.log("state::", state);
   return (

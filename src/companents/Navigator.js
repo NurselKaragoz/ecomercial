@@ -34,7 +34,7 @@ function Navigator() {
     }
     return totalBasketProduct;
   }
-
+  let addedProduct = basketCount(cart.length);
   return (
     <div className=" text-colors-white p-4">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
@@ -125,7 +125,7 @@ function Navigator() {
             className=" text-colors-lacivert"
             icon={LiaShoppingCartSolid}
           >
-            Sepetim ({basketCount(cart.length)} ürün)
+            Sepetim ({addedProduct}ürün)
             {cart.map((item) => (
               <DropdownItem key={item.product.id}>
                 {" "}
@@ -135,8 +135,7 @@ function Navigator() {
               </DropdownItem>
             ))}
           </Dropdown>
-          {basketCount(cart.length)}
-          <AiOutlineHeart />1
+          {addedProduct} <AiOutlineHeart />1
         </div>
       </div>
     </div>
