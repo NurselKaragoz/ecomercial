@@ -35,6 +35,14 @@ function Navigator() {
     return totalBasketProduct;
   }
   let addedProduct = basketCount(cart.length);
+
+  let toplamFiyat;
+  if (cart.length > 0) {
+    cart.reduce((total, item) => {
+      return (toplamFiyat = total + item.count * item.product.price);
+    }, 0);
+  }
+
   return (
     <div className=" text-colors-white p-4">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
@@ -134,6 +142,12 @@ function Navigator() {
                 {item.product.price}
               </DropdownItem>
             ))}
+            <DropdownItem>Toplam Fiyat $ {toplamFiyat}</DropdownItem>
+            <Link to="/sepet" className=" no-underline">
+              <DropdownItem className=" border-colors-gray bg-colors-blue rounded text-colors-white justify-center">
+                Sepete Git
+              </DropdownItem>
+            </Link>
           </Dropdown>
           {addedProduct} <AiOutlineHeart />1
         </div>
