@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { userAction } from "./Store/Actions/userActions";
 import { useDispatch } from "react-redux";
 import { fetchRoles } from "./Store/Actions/GlobalActions";
+import ShoppingCardPages from "./companents/ShoppingCardPages";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -44,6 +45,7 @@ function App() {
           path="/:category/:productId/:productName"
           component={ProductPage}
         />
+        <Route path="/sepet" component={ShoppingCardPages} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/shopping" component={ProductListPage} />
         <Route path="/about" component={AboutPage} />
