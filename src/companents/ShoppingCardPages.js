@@ -1,16 +1,28 @@
-import { Dropdown } from "flowbite-react";
 import { useSelector } from "react-redux";
-import { DropdownItem } from "flowbite-react/lib/esm/components/Dropdown/DropdownItem";
-import Productcard from "./ProductCard";
 import Bascetcard from "./BasketCard";
+import OrderSummary from "./OrderSummary";
 function ShoppingCardPages() {
   const cart = useSelector((state) => state.shoppingCart.cart);
   console.log("sepet", cart);
+
+  let toplamFiyat;
+  if (cart.length > 0) {
+    cart.reduce((total, item) => {
+      return (toplamFiyat = total + item.count * item.product.price);
+    }, 0);
+  }
   return (
-    <div>
-      {cart.map((item) => (
-        <Bascetcard key={item.product.id} cartItem={item}></Bascetcard>
-      ))}
+    <div className=" flex flex-row gap-2">
+      <div className=" flex">
+        <div>
+          {cart.map((item) => (
+            <Bascetcard key={item.product.id} cartItem={item}></Bascetcard>
+          ))}
+        </div>
+      </div>
+      <div className=" text-right  fixed top-25 right-0 h-full">
+        <OrderSummary toplamFiyat={toplamFiyat}></OrderSummary>
+      </div>
     </div>
   );
 }
