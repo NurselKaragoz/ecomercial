@@ -1,8 +1,17 @@
 import React from "react";
 import { Button } from "reactstrap";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import {
+  decreaseCart,
+  removeFromCart,
+} from "../Store/Actions/shoppingCartActions";
 
 export default function Bascetcard({ cartItem }) {
   console.log("basket <<<", cartItem.product.id);
+  const dispatch = useDispatch();
+  console.log("decrease", decreaseCart(cartItem.product.count));
+
   return (
     <div className="flex flex-row overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md items-center justify-around">
       <div className="group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white">
@@ -28,11 +37,14 @@ export default function Bascetcard({ cartItem }) {
         </a>
         <div className="counter-btn">
           <div className="btn-box flex flex-row">
-            <Button className="buton" color="warning">
+            <Button
+              className="buton"
+              color="warning"
+              onClick={() => dispatch(decreaseCart(cartItem.product.id))}
+            >
               -
             </Button>
             <Button outline color="warning">
-              {" "}
               {cartItem.count}
             </Button>
             <Button className="buton" color="warning">
@@ -46,6 +58,11 @@ export default function Bascetcard({ cartItem }) {
               $ {cartItem.product.price}
             </span>
           </p>
+        </div>
+        <div className=" ">
+          <button onClick={() => dispatch(removeFromCart(cartItem.product.id))}>
+            <FaRegTrashAlt />
+          </button>
         </div>
       </div>
     </div>

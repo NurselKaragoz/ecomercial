@@ -4,6 +4,7 @@ import {
   CLEAR_CART,
   SET_PAYMENT,
   SET_ADDRESS,
+  DECREASE_FROM_CART,
 } from "../Actions/shoppingCartActions";
 const initialState = {
   cart: [],
@@ -38,6 +39,25 @@ const shoppingCartReducer = (state = initialState, action) => {
         ...state,
         cart: state.cart.filter((item) => item.product.id !== action.productId),
       };
+
+    case DECREASE_FROM_CART:
+      const existingItemIndex = state.cart.findIndex(
+        (item) => item.product.id === action.product.id
+      );
+
+      if (existingItemIndex !== -1) {
+        const updatedCart = [...state.cart];
+        if (updatedCart[existingItemIndex].count === 1) {
+          updatedCart.splice(existingItemIndex, 1);
+        } else {
+          updatedCart[existingItemIndex].count -= 1;
+        }
+
+        return { ...state, cart: updatedCart };
+      } else {
+        return state;
+      }
+
     case CLEAR_CART:
       return {
         ...state,
