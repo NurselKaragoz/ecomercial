@@ -5,6 +5,7 @@ import {
   SET_PAYMENT,
   SET_ADDRESS,
   DECREASE_FROM_CART,
+  INCREASE_CART_ITEM,
 } from "../Actions/shoppingCartActions";
 const initialState = {
   cart: [],
@@ -52,6 +53,19 @@ const shoppingCartReducer = (state = initialState, action) => {
         } else {
           updatedCart[existingItemIndex].count -= 1;
         }
+
+        return { ...state, cart: updatedCart };
+      } else {
+        return state;
+      }
+    case INCREASE_CART_ITEM:
+      const existingItemIndexIncrease = state.cart.findIndex(
+        (item) => item.product.id === action.product.id
+      );
+
+      if (existingItemIndexIncrease !== -1) {
+        const updatedCart = [...state.cart];
+        updatedCart[existingItemIndexIncrease].count += 1;
 
         return { ...state, cart: updatedCart };
       } else {
