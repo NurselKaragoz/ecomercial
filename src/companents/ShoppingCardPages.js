@@ -16,7 +16,11 @@ function ShoppingCardPages() {
       <div className=" flex">
         <div>
           {cart.map((item) => (
-            <Bascetcard key={item.product.id} cartItem={item}></Bascetcard>
+            <Bascetcard
+              key={item.product.id}
+              cartItem={item}
+              cart={cart}
+            ></Bascetcard>
           ))}
         </div>
       </div>

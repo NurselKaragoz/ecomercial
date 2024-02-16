@@ -4,13 +4,14 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import {
   decreaseCart,
+  increaseCart,
   removeFromCart,
 } from "../Store/Actions/shoppingCartActions";
 
-export default function Bascetcard({ cartItem }) {
-  console.log("basket <<<", cartItem.product.id);
+export default function Bascetcard({ cartItem, cart }) {
+  console.log("basket <<<", cartItem.product);
   const dispatch = useDispatch();
-  console.log("decrease", decreaseCart(cartItem.product.count));
+  console.log("decrease", decreaseCart(cartItem.product));
 
   return (
     <div className="flex flex-row overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md items-center justify-around">
@@ -40,14 +41,18 @@ export default function Bascetcard({ cartItem }) {
             <Button
               className="buton"
               color="warning"
-              onClick={() => dispatch(decreaseCart(cartItem.product.id))}
+              onClick={() => dispatch(decreaseCart(cartItem.product))}
             >
               -
             </Button>
             <Button outline color="warning">
               {cartItem.count}
             </Button>
-            <Button className="buton" color="warning">
+            <Button
+              className="buton"
+              color="warning"
+              onClick={() => dispatch(increaseCart(cartItem.product))}
+            >
               +
             </Button>
           </div>
