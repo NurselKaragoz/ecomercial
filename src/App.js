@@ -1,5 +1,6 @@
 import "./App.css";
-import { Switch, Route, useParams } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import PrivateRoute from "./companents/PrivateRoute";
 
 import Header from "./companents/Header";
 
@@ -19,6 +20,7 @@ import { userAction } from "./Store/Actions/userActions";
 import { useDispatch } from "react-redux";
 import { fetchRoles } from "./Store/Actions/GlobalActions";
 import ShoppingCardPages from "./companents/ShoppingCardPages";
+import OrderPage from "./companents/OrderPage";
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
@@ -52,7 +54,7 @@ function App() {
         <Route path="/team" component={TeamPage} />
         <Route path="/signup" component={SingUpPage} />
         <Route path="/login" component={LoginPage} />
-
+        <Route path="/user/address" component={OrderPage} />
         <Route path="/" component={Home} />
       </Switch>
 

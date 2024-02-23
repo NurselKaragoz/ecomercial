@@ -5,7 +5,7 @@ function ShoppingCardPages() {
   const cart = useSelector((state) => state.shoppingCart.cart);
   console.log("sepet", cart);
 
-  let toplamFiyat;
+  let toplamFiyat = 0;
   if (cart.length > 0) {
     cart.reduce((total, item) => {
       return (toplamFiyat = total + item.count * item.product.price);
@@ -16,15 +16,11 @@ function ShoppingCardPages() {
       <div className=" flex">
         <div>
           {cart.map((item) => (
-            <Bascetcard
-              key={item.product.id}
-              cartItem={item}
-              cart={cart}
-            ></Bascetcard>
+            <Bascetcard key={item.product.id} cartItem={item}></Bascetcard>
           ))}
         </div>
       </div>
-      <div className=" text-right  fixed top-25 right-0 h-full">
+      <div className=" text-right  fixed top-25 right-5 h-full">
         <OrderSummary toplamFiyat={toplamFiyat}></OrderSummary>
       </div>
     </div>

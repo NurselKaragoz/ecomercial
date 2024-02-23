@@ -33,39 +33,7 @@ export function CarouselDefault({ product }) {
           width="100"
           height="100"
         />
-        {/* <div className="carousel-item">
-          <img
-            src={products[1].images[0].url}
-            className="d-block w-100"
-            alt="Camera"
-          />
-        </div> */}
-        {/* <div className="carousel-item">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-            className="d-block w-100"
-            alt="Exotic Fruits"
-          />
-        </div> */}
       </div>
-      {/* <button
-        className="carousel-control-prev"
-        type="button"
-        data-mdb-target="#carouselExampleControls"
-        data-mdb-slide="prev"
-      >
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Previous</span>
-      </button>
-      <button
-        className="carousel-control-next"
-        type="button"
-        data-mdb-target="#carouselExampleControls"
-        data-mdb-slide="next"
-      >
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Next</span>
-      </button> */}
     </div>
   );
 }
