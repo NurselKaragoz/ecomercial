@@ -8,10 +8,8 @@ import {
   removeFromCart,
 } from "../Store/Actions/shoppingCartActions";
 
-export default function Bascetcard({ cartItem, cart }) {
-  console.log("basket <<<", cartItem.product);
+export default function Bascetcard({ cartItem }) {
   const dispatch = useDispatch();
-  console.log("decrease", decreaseCart(cartItem.product));
 
   return (
     <div className="flex flex-row overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md items-center justify-around">
@@ -66,7 +64,7 @@ export default function Bascetcard({ cartItem, cart }) {
         </div>
         <div className=" ">
           <button onClick={() => dispatch(removeFromCart(cartItem.product.id))}>
-            <FaRegTrashAlt />
+            <FaRegTrashAlt size={20} />
           </button>
         </div>
       </div>

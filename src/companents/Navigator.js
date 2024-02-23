@@ -114,7 +114,6 @@ function Navigator() {
                   )}?s=24`}
                 />
               )}
-              {/* {showMessage} */}
             </div>
           </div>
           <Link className=" no-underline" to="/login">
