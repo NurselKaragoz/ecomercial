@@ -96,7 +96,7 @@ export default function App() {
             {...register("role_id")}
             onChange={(e) => {
               setRegisterMode(e.target.value);
-              setAvailableRoles("role_id", e.target.value); // Set the value for 'role_id' in the form data
+              setAvailableRoles("role_id", e.target.value);
             }}
           >
             <option value="3">customer</option>
