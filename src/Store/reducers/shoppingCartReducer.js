@@ -4,13 +4,14 @@ import {
   CLEAR_CART,
   SET_PAYMENT,
   SET_ADDRESS,
+  GET_ADDRESS,
   DECREASE_FROM_CART,
   INCREASE_CART_ITEM,
 } from "../Actions/shoppingCartActions";
 const initialState = {
   cart: [],
   payment: {},
-  address: {},
+  address: [],
 };
 
 const shoppingCartReducer = (state = initialState, action) => {
@@ -85,8 +86,14 @@ const shoppingCartReducer = (state = initialState, action) => {
     case SET_ADDRESS:
       return {
         ...state,
-        address: action.addressInfo,
+        address: [...state.address, action.payload],
       };
+    case GET_ADDRESS:
+      return {
+        ...state,
+        address: action.payload,
+      };
+
     default:
       return state;
   }
