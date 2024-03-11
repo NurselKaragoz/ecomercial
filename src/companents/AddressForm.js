@@ -1,54 +1,32 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import axiosInstance from "../Axios/axiosInstance";
-import { toast } from "react-toastify";
 import { turkishCities } from "./TurkeysCities";
+import { useDispatch } from "react-redux";
+import { setAddress } from "../Store/Actions/shoppingCartActions";
 
 function AddressForm({ setShowForm }) {
-  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedCity, setSelectedCity] = useState();
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const { handleSubmit, register } = useForm();
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setShowForm(false);
   };
 
   const onSubmit = (data) => {
-    console.log(data);
-    const postData = {
-      title: data.title,
-      name: data.name,
-      surname: data.surname,
-      city: selectedCity,
-      district: selectedDistrict,
-      phone: data.phone,
-      neighborhood: data.neighborhood,
-      address: data.address,
-    };
-
-    axiosInstance
-      .post("/user/address", postData, {
-        headers: {
-          Authorization: ` ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        console.log("Adres", response.data);
-        toast.success("Adresiniz başarıyla eklendi");
-      })
-      .catch((error) => {
-        console.error("Adres formu başarısız", error);
-        toast.error("Adresinizi kaydetmek için giriş yapmalısınız!");
-      });
+    dispatch(setAddress(data));
   };
 
   const handleCityChange = (e) => {
-    setSelectedCity(e.target.value);
+    const selectedCity = e.target.value;
+    setSelectedCity(selectedCity);
     setSelectedDistrict("");
   };
 
   const handleDistrictChange = (e) => {
-    setSelectedDistrict(e.target.value);
+    const selectedDistrict = e.target.value;
+    setSelectedDistrict(selectedDistrict);
   };
 
   return (
@@ -138,6 +116,7 @@ function AddressForm({ setShowForm }) {
                       className="h-10 border mt-1 rounded px-4 w-full border-colors-lacivert"
                       value={selectedCity}
                       onChange={handleCityChange}
+                      {...register("city")}
                     >
                       <option value="">Select a city</option>
                       {turkishCities.map((city) => (
@@ -151,7 +130,7 @@ function AddressForm({ setShowForm }) {
 
                 <div className="md:col-span-5 flex justify-between">
                   <label className="flex flex-col">
-                    İlçe{" "}
+                    İlçe
                     <select
                       type="text"
                       name="district"
@@ -159,15 +138,16 @@ function AddressForm({ setShowForm }) {
                       className="h-10 border mt-1 rounded px-4 w-full border-colors-lacivert"
                       value={selectedDistrict}
                       onChange={handleDistrictChange}
+                      {...register("district")}
                     >
-                      <option value="">Select a district</option>
-                      {turkishCities
-                        .find((city) => city.il === selectedCity)
-                        ?.ilceleri.map((district) => (
-                          <option key={district} value={district}>
-                            {district}
-                          </option>
-                        ))}
+                      {selectedCity &&
+                        turkishCities
+                          .find((city) => city.il === selectedCity)
+                          ?.ilceleri.map((district) => (
+                            <option key={district} value={district}>
+                              {district}
+                            </option>
+                          ))}
                     </select>
                   </label>
                   <label className="flex flex-col">
@@ -198,7 +178,10 @@ function AddressForm({ setShowForm }) {
                 </div>
               </div>
               <div className="flex justify-center">
-                <button className=" bg-colors-lacivert text-colors-white px-5 py-2 rounded-md mt-4 mb-4">
+                <button
+                  type="submit"
+                  className=" bg-colors-lacivert text-colors-white px-5 py-2 rounded-md mt-4 mb-4"
+                >
                   Adresi Kaydet
                 </button>
               </div>

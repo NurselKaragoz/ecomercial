@@ -1,32 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AddressForm from "./AddressForm";
 import AddressRead from "./AddressRead";
-import axiosInstance from "../Axios/axiosInstance";
+import { useDispatch, useSelector } from "react-redux";
 
 function OrderPage() {
   const [showForm, setShowForm] = useState(false);
+  const getData = useSelector((state) => state.shoppingCart.address);
+  console.log("adresread", getData);
 
   const handleClick = () => {
     setShowForm(true);
   };
 
-  const [getData, setGetData] = useState([]);
-
-  useEffect(() => {
-    axiosInstance
-      .get("/user/address", {
-        headers: {
-          Authorization: ` ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        console.log("Adres", response.data);
-        setGetData(response.data);
-      })
-      .catch((error) => {
-        console.error("Adres formu başarısız", error);
-      });
-  }, []);
+  const dispatch = useDispatch();
 
   return (
     <div className=" text-colors-lacivert flex justify-start flex-col items-center gap-10">
@@ -39,9 +25,9 @@ function OrderPage() {
       <div className=" justify-start">
         {showForm && <AddressForm setShowForm={setShowForm} />}
       </div>
-      <div className=" flex flex-row gap-5 justify-around">
-        {getData.map((getData) => (
-          <AddressRead getData={getData} key={getData.id} />
+      <div className=" flex flex-col gap-5 justify-around">
+        {getData.map((item) => (
+          <AddressRead getData={item} key={item.id} />
         ))}
       </div>
     </div>
