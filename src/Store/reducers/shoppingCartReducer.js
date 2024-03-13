@@ -7,6 +7,7 @@ import {
   GET_ADDRESS,
   DECREASE_FROM_CART,
   INCREASE_CART_ITEM,
+  EDIT_ADDRESS,
 } from "../Actions/shoppingCartActions";
 const initialState = {
   cart: [],
@@ -93,6 +94,22 @@ const shoppingCartReducer = (state = initialState, action) => {
         ...state,
         address: action.payload,
       };
+    case EDIT_ADDRESS:
+      const updatedAddressIndex = state.address.findIndex(
+        (address) => address.id === action.addressId
+      );
+
+      if (updatedAddressIndex !== -1) {
+        const updatedAddressList = [...state.address];
+        updatedAddressList[updatedAddressIndex] = action.newAddressInfo;
+
+        return {
+          ...state,
+          address: updatedAddressList,
+        };
+      } else {
+        return state;
+      }
 
     default:
       return state;
