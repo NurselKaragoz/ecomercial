@@ -1,4 +1,4 @@
-import { ADD_CREDIT_CART } from "../Actions/CreditCartActions";
+import { ADD_CREDIT_CART, GET_CREDIT_CARD } from "../Actions/CreditCartActions";
 const initialState = {
   payment: {},
 };
@@ -8,7 +8,12 @@ const creditCartReducer = (state = initialState, action) => {
     case ADD_CREDIT_CART:
       return {
         ...state,
-        payment: action.payload,
+        payment: action.paymentInfo,
+      };
+    case GET_CREDIT_CARD:
+      return {
+        ...state,
+        payment: action.paymentInfo,
       };
 
     default:
