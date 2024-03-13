@@ -3,6 +3,7 @@ import AddressForm from "./AddressForm";
 import AddressRead from "./AddressRead";
 import { useDispatch, useSelector } from "react-redux";
 import CreditCard from "./CreditCart";
+import CreditCardRead from "./CreditCardRead";
 
 function OrderPage() {
   const [showForm, setShowForm] = useState(false);
@@ -68,6 +69,7 @@ function OrderPage() {
             <div>
               {" "}
               <CreditCard />
+              <CreditCardRead />
             </div>
           </div>
         </div>

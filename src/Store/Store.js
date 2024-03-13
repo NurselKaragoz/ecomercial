@@ -16,8 +16,8 @@ const reducer = combineReducers({
   user: userReducer,
   product: productReducer,
   shoppingCart: shoppingCartReducer,
+  payment: creditCartReducer,
   store: storeReducer,
-  creditCart: creditCartReducer,
 });
 
 const middleware = [thunk, logger];

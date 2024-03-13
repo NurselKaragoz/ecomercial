@@ -32,10 +32,7 @@ function CreditCard() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-2 gap-6">
             <div className="col-span-2 sm:col-span-1">
-              <label
-                htmlFor="card-number"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Kart Numarası{" "}
               </label>
               <input
@@ -45,7 +42,7 @@ function CreditCard() {
                 placeholder="0000 0000 0000 0000"
                 className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
                 onChange={handleChange}
-                {...register("cart_no")}
+                {...register("card_no")}
               />
             </div>
             <div className="col-span-2 sm:col-span-1">
