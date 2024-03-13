@@ -8,9 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../Store/Actions/GlobalActions";
 import { Link } from "react-router-dom";
 import { fetchProduct } from "../Store/Actions/productActions";
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Button } from "@mui/material";
-import Pagination from "./Pagination";
 
 function ProductListPage() {
   const categories = useSelector((state) => state.global?.categories);
@@ -29,7 +28,6 @@ function ProductListPage() {
       dispatch(fetchProduct());
     }
   }, []);
-  //Categori bölümü
   let rateArray = categories;
   const sortedCategories = rateArray.sort((a, b) => b.rating - a.rating);
   const top5Categories = sortedCategories.slice(0, 5);

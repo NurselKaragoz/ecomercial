@@ -6,7 +6,7 @@ export const CLEAR_CART = "CLEAR_CART";
 export const SET_PAYMENT = "SET_PAYMENT";
 export const SET_ADDRESS = "SET_ADDRESS";
 export const GET_ADDRESS = "GET_ADDRESS";
-
+export const EDIT_ADDRESS = "EDIT_ADDRESS";
 export const DECREASE_FROM_CART = "DECREASE_FROM_CART";
 export const INCREASE_CART_ITEM = "INCREASE_CART_ITEM";
 
@@ -14,22 +14,17 @@ export const addToCart = (product) => ({
   type: ADD_TO_CART,
   payload: product,
 });
-
 export const removeFromCart = (productId) => ({
   type: REMOVE_FROM_CART,
   productId,
 });
-console.log("shopcartaction", removeFromCart);
 export const clearCart = () => ({ type: CLEAR_CART });
 export const setPayment = (paymentInfo) => ({ type: SET_PAYMENT, paymentInfo });
 export const setAddressData = (payload) => ({
   type: SET_ADDRESS,
   payload,
 });
-console.log("actionadress", setAddressData);
 export const setAddress = (postData) => {
-  console.log("adressfromform1111", postData);
-
   return async (dispatch) => {
     axiosInstance
       .post("/user/address", postData, {
@@ -40,7 +35,7 @@ export const setAddress = (postData) => {
       .then((response) => {
         console.log("Adres1111", response.data);
         toast.success("Adresiniz başarıyla eklendi");
-        dispatch(setAddressData(response.data)); // response.data kullanılmalı
+        dispatch(setAddressData(response.data));
       })
       .catch((error) => {
         console.error("Adres formu başarısız", error);
@@ -78,3 +73,34 @@ export const fetchAddress = axiosInstance
   .catch((error) => {
     console.error("Adres formu başarısız", error);
   });
+
+export const editAddress = (newAddressData, id) => {
+  const queryParams = new URLSearchParams();
+  if (id) queryParams.append("id", id);
+  return async (dispatch) => {
+    try {
+      const response = await axiosInstance.put(
+        `/user/address?${queryParams.toString()}`,
+        newAddressData,
+        {
+          headers: { Authorization: ` ${localStorage.getItem("token")}` },
+        }
+      );
+      console.log("edited address", response.data);
+      console.log("edited address1111", newAddressData);
+
+      dispatch(updateAddress(newAddressData));
+      toast.success("Adresiniz başarıyla güncellendi");
+    } catch (error) {
+      console.error("Adres düzenleme başarısız ", error);
+      toast.error("Adresinizi güncellerken bir hata oluştu!");
+    }
+  };
+};
+
+export const updateAddress = (updatedAddress) => {
+  return {
+    type: EDIT_ADDRESS,
+    updatedAddress,
+  };
+};

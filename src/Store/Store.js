@@ -9,6 +9,7 @@ import userReducer from "./reducers/userReducer";
 import productReducer from "./reducers/productReducer";
 import shoppingCartReducer from "./reducers/shoppingCartReducer";
 import storeReducer from "./reducers/storeReducer";
+import creditCartReducer from "./reducers/CreditCartReducer";
 
 const reducer = combineReducers({
   global: globalReducer,
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   product: productReducer,
   shoppingCart: shoppingCartReducer,
   store: storeReducer,
+  creditCart: creditCartReducer,
 });
 
 const middleware = [thunk, logger];

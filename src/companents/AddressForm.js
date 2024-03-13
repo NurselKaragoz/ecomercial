@@ -3,8 +3,9 @@ import { useState } from "react";
 import { turkishCities } from "./TurkeysCities";
 import { useDispatch } from "react-redux";
 import { setAddress } from "../Store/Actions/shoppingCartActions";
+import { editAddress } from "../Store/Actions/shoppingCartActions";
 
-function AddressForm({ setShowForm }) {
+function AddressForm({ setShowForm }, { editModeData }) {
   const [selectedCity, setSelectedCity] = useState();
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const { handleSubmit, register } = useForm();
@@ -15,18 +16,19 @@ function AddressForm({ setShowForm }) {
   };
 
   const onSubmit = (data) => {
-    dispatch(setAddress(data));
+    console.log("editdataform", data);
+    if (editModeData) {
+      dispatch(editAddress(data));
+    } else {
+      dispatch(setAddress(data));
+    }
+    setShowForm(false);
   };
 
   const handleCityChange = (e) => {
     const selectedCity = e.target.value;
     setSelectedCity(selectedCity);
     setSelectedDistrict("");
-  };
-
-  const handleDistrictChange = (e) => {
-    const selectedDistrict = e.target.value;
-    setSelectedDistrict(selectedDistrict);
   };
 
   return (
@@ -131,24 +133,13 @@ function AddressForm({ setShowForm }) {
                 <div className="md:col-span-5 flex justify-between">
                   <label className="flex flex-col">
                     İlçe
-                    <select
+                    <input
                       type="text"
                       name="district"
                       id="district"
                       className="h-10 border mt-1 rounded px-4 w-full border-colors-lacivert"
-                      value={selectedDistrict}
-                      onChange={handleDistrictChange}
                       {...register("district")}
-                    >
-                      {selectedCity &&
-                        turkishCities
-                          .find((city) => city.il === selectedCity)
-                          ?.ilceleri.map((district) => (
-                            <option key={district} value={district}>
-                              {district}
-                            </option>
-                          ))}
-                    </select>
+                    />
                   </label>
                   <label className="flex flex-col">
                     Mahalle
