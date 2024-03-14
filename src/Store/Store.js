@@ -16,7 +16,7 @@ const reducer = combineReducers({
   user: userReducer,
   product: productReducer,
   shoppingCart: shoppingCartReducer,
-  payment: creditCartReducer,
+  paymentInfo: creditCartReducer,
   store: storeReducer,
 });
 

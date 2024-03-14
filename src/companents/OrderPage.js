@@ -9,6 +9,9 @@ function OrderPage() {
   const [showForm, setShowForm] = useState(false);
   const [changeOrder, setChangeOrder] = useState(false);
   const getData = useSelector((state) => state.shoppingCart.address);
+  const payment = useSelector((state) => state.paymentInfo.payment);
+  console.log("payment", payment);
+
   console.log("adresread", getData);
 
   const handleClick = () => {
@@ -67,9 +70,12 @@ function OrderPage() {
             className={`tabcontent p-4 ${activeTab !== "tab2" ? "hidden" : ""}`}
           >
             <div>
-              {" "}
               <CreditCard />
-              <CreditCardRead />
+              <div className=" flex gap-5 justify-around">
+                {payment.map((item) => (
+                  <CreditCardRead payment={item} key={item.id} />
+                ))}
+              </div>
             </div>
           </div>
         </div>

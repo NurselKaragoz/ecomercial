@@ -25,27 +25,21 @@ export const addCreditCart = (data) => {
       });
   };
 };
+export const fetchCreditCard = axiosInstance
+  .get("/user/card", {
+    headers: {
+      Authorization: ` ${localStorage.getItem("token")}`,
+    },
+  })
+  .then((response) => {
+    getCreditCard(response.data);
+  })
+  .catch((error) => {
+    console.error("Creditcart başarısız", error);
+  });
 export const getCreditCard = (data) => {
   return {
     type: GET_CREDIT_CARD,
     payload: data,
-  };
-};
-export const fetchCreditCard = (dispatch) => {
-  return async () => {
-    axiosInstance
-      .get("/user/card", {
-        headers: {
-          Authorization: `${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        dispatch(getCreditCard(response.data));
-
-        console.log("kredi kartı okuma", response.data);
-      })
-      .catch((error) => {
-        console.error("credit cart error", error);
-      });
   };
 };
