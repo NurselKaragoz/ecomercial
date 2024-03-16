@@ -16,12 +16,8 @@ function AddressForm({ setShowForm }, { editModeData }) {
   };
 
   const onSubmit = (data) => {
-    console.log("editdataform", data);
-    if (editModeData) {
-      dispatch(editAddress(data));
-    } else {
-      dispatch(setAddress(data));
-    }
+    dispatch(setAddress(data));
+
     setShowForm(false);
   };
 
@@ -98,7 +94,7 @@ function AddressForm({ setShowForm }, { editModeData }) {
                     />
                   </label>
                 </div>
-                <div className="md:col-span-5 flex justify-between gap-3">
+                <div className="md:col-span-5 flex justify-between ">
                   <label className="flex flex-col">
                     Telefon{" "}
                     <input
@@ -110,12 +106,12 @@ function AddressForm({ setShowForm }, { editModeData }) {
                       {...register("phone")}
                     />
                   </label>
-                  <label className="flex flex-col">
+                  <label className="">
                     Şehir{" "}
                     <select
                       name="city"
-                      id="city"
                       className="h-10 border mt-1 rounded px-4 w-full border-colors-lacivert"
+                      id="city"
                       value={selectedCity}
                       onChange={handleCityChange}
                       {...register("city")}
@@ -171,7 +167,7 @@ function AddressForm({ setShowForm }, { editModeData }) {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className=" bg-colors-lacivert text-colors-white px-5 py-2 rounded-md mt-4 mb-4"
+                  className=" bg-colors-lacivert text-colors-white px-5 py-2 rounded-md mt-4 mb-4 min-w-full"
                 >
                   Adresi Kaydet
                 </button>
