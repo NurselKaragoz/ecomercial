@@ -9,6 +9,7 @@ export const GET_ADDRESS = "GET_ADDRESS";
 export const EDIT_ADDRESS = "EDIT_ADDRESS";
 export const DECREASE_FROM_CART = "DECREASE_FROM_CART";
 export const INCREASE_CART_ITEM = "INCREASE_CART_ITEM";
+export const DELETE_ADDRESS = "DELETE_ADDRESS";
 
 export const addToCart = (product) => ({
   type: ADD_TO_CART,
@@ -104,3 +105,20 @@ export const updateAddress = (updatedAddress) => {
     updatedAddress,
   };
 };
+export const deleteAddress = (id) => {
+  return async (dispatch) => {
+    try {
+      await axiosInstance.delete(`/user/address/${id}`, {
+        headers: {
+          Authorization: ` ${localStorage.getItem("token")}`,
+        },
+      });
+      dispatch(clearAddress(id));
+      toast.success("Adres başarıyla silindi");
+    } catch (error) {
+      console.error("Adres silme başarısız ", error);
+      toast.error("Adresi silerken bir hata oluştu!");
+    }
+  };
+};
+export const clearAddress = (id) => ({ type: DELETE_ADDRESS, payload: id });

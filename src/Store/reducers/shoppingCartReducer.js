@@ -8,6 +8,7 @@ import {
   DECREASE_FROM_CART,
   INCREASE_CART_ITEM,
   EDIT_ADDRESS,
+  DELETE_ADDRESS,
 } from "../Actions/shoppingCartActions";
 const initialState = {
   cart: [],
@@ -110,6 +111,11 @@ const shoppingCartReducer = (state = initialState, action) => {
       } else {
         return state;
       }
+    case DELETE_ADDRESS:
+      return {
+        ...state,
+        address: state.address.filter((item) => item.id !== action.payload.id),
+      };
 
     default:
       return state;
