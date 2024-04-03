@@ -25,6 +25,7 @@ export const setAddressData = (payload) => ({
   type: SET_ADDRESS,
   payload,
 });
+
 export const setAddress = (postData) => {
   return async (dispatch) => {
     axiosInstance
@@ -60,20 +61,21 @@ export const getAddress = (data) => {
     payload: data,
   };
 };
-export const fetchAddress = axiosInstance
-  .get("/user/address", {
-    headers: {
-      Authorization: ` ${localStorage.getItem("token")}`,
-    },
-  })
-  .then((response) => {
-    console.log("Adres", response.data);
-    getAddress(response.data);
-    console.log("shopAdress2222", response.data);
-  })
-  .catch((error) => {
-    console.error("Adres formu başarısız", error);
-  });
+export const fetchAddress = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axiosInstance.get("/user/address", {
+        headers: {
+          Authorization: ` ${localStorage.getItem("token")}`,
+        },
+      });
+      console.log("Adres", response.data);
+      dispatch(getAddress(response.data));
+    } catch (error) {
+      console.error("Adres formu başarısız", error);
+    }
+  };
+};
 
 export const editAddress = (newAddressData, id) => {
   const queryParams = new URLSearchParams();
@@ -105,6 +107,7 @@ export const updateAddress = (updatedAddress) => {
     updatedAddress,
   };
 };
+
 export const deleteAddress = (id) => {
   return async (dispatch) => {
     try {

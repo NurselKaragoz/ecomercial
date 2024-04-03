@@ -19,7 +19,6 @@ const reducer = combineReducers({
   paymentInfo: creditCartReducer,
   store: storeReducer,
 });
-
 const middleware = [thunk, logger];
 
 const store = createStore(reducer, applyMiddleware(thunk));

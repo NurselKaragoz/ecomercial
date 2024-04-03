@@ -28,6 +28,7 @@ function ProductListPage() {
       dispatch(fetchProduct());
     }
   }, []);
+
   let rateArray = categories;
   const sortedCategories = rateArray.sort((a, b) => b.rating - a.rating);
   const top5Categories = sortedCategories.slice(0, 5);

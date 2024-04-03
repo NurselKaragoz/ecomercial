@@ -114,7 +114,7 @@ const shoppingCartReducer = (state = initialState, action) => {
     case DELETE_ADDRESS:
       return {
         ...state,
-        address: state.address.filter((item) => item.id !== action.payload.id),
+        address: state.address.filter((item) => item.id !== action.payload),
       };
 
     default:

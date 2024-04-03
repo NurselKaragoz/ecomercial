@@ -1,4 +1,8 @@
-import { ADD_CREDIT_CART, GET_CREDIT_CARD } from "../Actions/CreditCartActions";
+import {
+  ADD_CREDIT_CART,
+  DELETE_CREDIT_CARD,
+  GET_CREDIT_CARD,
+} from "../Actions/CreditCartActions";
 const initialState = {
   payment: [],
 };
@@ -14,6 +18,11 @@ const creditCartReducer = (state = initialState, action) => {
       return {
         ...state,
         payment: action.payload,
+      };
+    case DELETE_CREDIT_CARD:
+      return {
+        ...state,
+        payment: state.payment.filter((item) => item.id !== action.payload),
       };
 
     default:
