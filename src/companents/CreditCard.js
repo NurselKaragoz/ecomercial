@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addCreditCart } from "../Store/Actions/CreditCartActions";
+import { updateOrAddCreditCard } from "../Store/Actions/CreditCartActions";
 
-function CreditCard() {
+function CreditCard({ setShowCard }) {
   const [formData, setFormData] = useState({
     card_no: "",
     expirationMonth: "",
     expirationYear: "",
     cardHolderName: "",
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -18,16 +17,40 @@ function CreditCard() {
       [name]: value,
     });
   };
+
   const { handleSubmit, register } = useForm();
   const dispatch = useDispatch();
   const onSubmit = (data) => {
     console.log("cartbilgileri", data);
-    dispatch(addCreditCart(data));
+    dispatch(updateOrAddCreditCard(data));
   };
 
   return (
     <div className="w-full max-w-lg mx-auto p-8">
       <div className="bg-white rounded-lg shadow-lg p-6">
+        <button
+          onClick={() => {
+            setShowCard(true);
+          }}
+          type="button"
+          className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+        >
+          <svg
+            className="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
         <h2 className="text-lg font-medium mb-6">Kart Bilgileri</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-2 gap-6">

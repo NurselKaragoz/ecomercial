@@ -1,10 +1,13 @@
 import { useDispatch } from "react-redux";
 import { deleteCreditCard } from "../Store/Actions/CreditCartActions";
-
+import { updateOrAddCreditCard } from "../Store/Actions/CreditCartActions";
+import CreditCard from "./CreditCard";
+import { useState } from "react";
 function CreditCardRead(props) {
   const { payment } = props;
   const dispatch = useDispatch();
-  console.log("paymentread", payment);
+  const [showCard, setShowCard] = useState(false);
+  const [editModeData, setEditModeData] = useState(false);
 
   const onDeleteSubmit = async (data) => {
     try {
@@ -12,17 +15,18 @@ function CreditCardRead(props) {
       console.log("cardid", data);
     } catch (error) {}
   };
-  // console.log("Payment ID", payment[0].id);
 
-  // const onEditSubmit = async (data) => {
-  //   try {
-  //     dispatch(editAddress(data));
-  //     console.log("editAdressiid", data);
-  //   } catch (error) {}
-  // };
+  const onEditSubmit = async (data) => {
+    try {
+      dispatch(updateOrAddCreditCard(data));
+      console.log("editAdressiid", data);
+    } catch (error) {}
+  };
 
   return (
     <div class="mx-auto max-w-lg mt-40">
+      {showCard && <CreditCard setShowCard={setShowCard} />}
+
       <div class="bg-white rounded-lg overflow-hidden shadow-lg">
         <div class="px-6 py-4">
           <div class="flex justify-between items-center">
@@ -52,14 +56,16 @@ function CreditCardRead(props) {
             >
               Kredi Kartını Sil
             </button>
-            {/* <button
+            <button
               onClick={() => {
-                onEditSubmit(payment[0].id);
+                onEditSubmit(payment.id);
+                setShowCard(true);
+                setEditModeData(true);
               }}
               className=" text-blue-500 hover:text-blue-700  "
             >
               Düzenle
-            </button> */}
+            </button>
           </div>
         </div>
       </div>

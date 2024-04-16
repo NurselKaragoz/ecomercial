@@ -4,29 +4,8 @@ import { toast } from "react-toastify";
 export const ADD_CREDIT_CART = "ADD_CREDIT_CART";
 export const GET_CREDIT_CARD = "GET_CREDIT_CARD";
 export const DELETE_CREDIT_CARD = "DELETE_CREDIT_CARD";
+export const EDIT_CREDIT_CARD = "EDIT_CREDIT_CARD";
 
-export const creditCart = (payment) => ({
-  type: ADD_CREDIT_CART,
-  payload: payment,
-});
-
-export const addCreditCart = (data) => {
-  return async (dispatch) => {
-    axiosInstance
-      .post("/user/card", data, {
-        headers: {
-          Authorization: `${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        console.log("creditcartaction", response.data);
-        dispatch(creditCart(response.data));
-      })
-      .catch((error) => {
-        console.error("credit cart error", error);
-      });
-  };
-};
 export const fetchCreditCard = () => {
   return async (dispatch) => {
     try {
@@ -70,3 +49,46 @@ export const clearCreditCard = (id) => ({
   type: DELETE_CREDIT_CARD,
   payload: id,
 });
+export const addOrUpdateCreditCard = (data, id) => {
+  return async (dispatch) => {
+    try {
+      let response;
+      let url;
+      let toastMessage;
+
+      if (id) {
+        response = await axiosInstance.put(`/user/card/${id}`, data, {
+          headers: { Authorization: ` ${localStorage.getItem("token")}` },
+        });
+        url = "user/card";
+        toastMessage = "Kredi Kartı başarıyla güncellendi";
+      } else {
+        response = await axiosInstance.post("/user/card", data, {
+          headers: { Authorization: ` ${localStorage.getItem("token")}` },
+        });
+        url = "user/card";
+        toastMessage = "Kredi Kartı başarıyla eklendi";
+      }
+
+      dispatch(updateOrAddCreditCard(response.data));
+      toast.success(toastMessage);
+    } catch (error) {
+      console.error("İşlem başarısız ", error);
+      toast.error("İşlem sırasında bir hata oluştu!");
+    }
+  };
+};
+
+export const updateOrAddCreditCard = (cardData) => {
+  if (cardData.id) {
+    return {
+      type: EDIT_CREDIT_CARD,
+      updatedCard: cardData,
+    };
+  } else {
+    return {
+      type: ADD_CREDIT_CART,
+      payload: cardData,
+    };
+  }
+};

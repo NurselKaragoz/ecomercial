@@ -2,12 +2,13 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { turkishCities } from "./TurkeysCities";
 import { useDispatch } from "react-redux";
-import { setAddress } from "../Store/Actions/shoppingCartActions";
-import { editAddress } from "../Store/Actions/shoppingCartActions";
+import { editAddress, setAddress } from "../Store/Actions/shoppingCartActions";
 
 function AddressForm({ setShowForm }, { editModeData }) {
   const [selectedCity, setSelectedCity] = useState();
   const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [editAdress, setEditAddress] = useState();
+
   const { handleSubmit, register } = useForm();
   const dispatch = useDispatch();
 
